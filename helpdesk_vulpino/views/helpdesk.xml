@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="helpdesk_tree_view">
+            <field name="name">Helpdesk tickets</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" optional="show"/>
+                    <field name="description" optional="show"/>
+                    <field name="date" optional="show"/>
+                    <field name="limit_datetime" optional="show"/>
+                    <field name="assign" optional="show"/>
+                    <field name="actions_todo"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

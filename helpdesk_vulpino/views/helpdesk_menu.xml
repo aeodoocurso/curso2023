@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_menu_helpdesk_root" model="ir.actions.act_window">
+        <field name="name">Helpdesk</field>
+        <field name="res_model">helpdesk.ticket</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem id="menu_helpdesk_root"
+              name="Helpdesk"
+              sequence="10"/>
+
+    <menuitem id="menu_helpdesk_tickets"
+              name="Helpdesk tickets"
+              parent="menu_helpdesk_root"
+              action="action_menu_helpdesk_root"/>
+
+    <menuitem id="menu_helpdesk_tickets_abiertos"
+              name="Helpdesk Tickets Open State"
+              parent="menu_helpdesk_tickets"/>
+</odoo>
