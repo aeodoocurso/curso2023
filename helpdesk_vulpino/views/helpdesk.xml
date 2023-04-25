@@ -13,11 +13,8 @@
                     <field name="name"/>
                     <field name="user_id" widget="many2one_avatar_user"/>
                     <field name="stage"></field>
-                    <field name="description"/>
                     <field name="date" optional="show"/>
                     <field name="limit_datetime" optional="hidden"/>
-                    <field name="assign"/>
-                    <field name="actions_todo"/>
                 </tree>
             </field>
         </record>
