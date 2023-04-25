@@ -7,29 +7,39 @@ class HelpdeskTicket(models.Model):
 
     # Nombre
     name = fields.Char(
+        string = 'Nombre',
         required=True,
         help="Resume en pocas palabras, un título para la incidencia"
     )
 
     # Descripción
     description = fields.Text(
+        string = 'Descripción',
         help="Escribe detalladamente la incidencia. Cuanta más información aportes, más fácil será ayudarte.",
         default="""Versión a la que afecta:
         Módulo:
         Pasos para replicar:
         Módulos personalizados:
+        
         """
     )
 
     # Fecha
-    date = fields.Date()
+    date = fields.Date(
+        string = 'Fecha'
+    )
 
     # Fecha y hora limite
     date_limit = fields.Datetime(
-        string='Limit Date & Time')
+        string='Límite'
+    )
 
     # Asignado (Verdadero o Falso)
-    assigned = fields.Boolean()
+    assigned = fields.Boolean(
+        string = 'Asignado'
+    )
 
     # Acciones a realizar (Html)
-    actions_todo = fields.Html()
+    actions_todo = fields.Html(
+        string = 'Acciones a realizar'
+    )

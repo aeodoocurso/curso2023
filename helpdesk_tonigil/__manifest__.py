@@ -1,4 +1,4 @@
-# Copyright <2023> Toni Gil - antonio.gil@hilltech.es
+# Copyright 2023 Toni Gil - antonio.gil@hilltech.es
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Helpdesk Toni Gil",
