@@ -4,13 +4,16 @@ class HelpdeskTicket(models.Model):
     _name = "helpdesk.ticket"
     _description = "Helpdesk Ticket"
 
-
+    # Secuencia
+    sequence = fields.Integer()
+    
     # Nombre
     name = fields.Char(
         string = 'Nombre',
         required=True,
         help="Resume en pocas palabras, un título para la incidencia"
     )
+
 
     # Descripción
     description = fields.Text(

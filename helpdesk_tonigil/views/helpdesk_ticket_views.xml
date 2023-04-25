@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
+
+    <!-- Creamos la vista -->
+    <record id="helpdesk_ticket_tree" model="ir.ui.view">
+        <field name="name">Helpdesk.tickets.tree</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="tickets">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="state"/>
+                <field name="date" optional="show"/>
+                <field name="date_limit" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    
     <!-- Creamos la acción -->
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Helpdesk Tickets</field>
@@ -14,7 +31,7 @@
         </field>
     </record>
 
-    <!-- Creamos el menú donde abrir la acción -->
+    <!-- Creamos el menú -->
     <!-- Este aparece en el menú principal -->
     <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
     <!-- Este aparece dentro del menú Helpdesk, por el parent enlazado y ejecuta la acción, por el action enlazado -->
