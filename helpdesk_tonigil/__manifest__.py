@@ -5,7 +5,7 @@
     "summary": "Gestión de incidencias para el curso Aeodoo",
     "version": "16.0.1.0.0",
     "category": "Helpdesk",
-    "website": "https://aeodoo.org",
+    "website": "https://github.com/78Tonigil/curso2023",
     "author": "Hilltech, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
