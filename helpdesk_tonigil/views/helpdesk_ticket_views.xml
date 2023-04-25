@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-
+    <!-- Creamos la acción -->
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Helpdesk Tickets</field>
         <field name="type">ir.actions.act_window</field>
@@ -14,6 +14,7 @@
         </field>
     </record>
 
+    <!-- Creamos el menú donde abrir la acción -->
     <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
     <menuitem id="helpdesk_ticket_open" name="Tickets" sequence="10" parent="helpdesk_menu" action="helpdesk_ticket_action"/>
 
