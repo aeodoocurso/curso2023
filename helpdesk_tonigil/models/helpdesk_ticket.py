@@ -25,21 +25,17 @@ class HelpdeskTicket(models.Model):
     )
 
     # Fecha
-    date = fields.Date(
-        string = 'Fecha'
-    )
+    date = fields.Date()
 
     # Fecha y hora limite
-    date_limit = fields.Datetime(
-        string='Límite'
-    )
+    date_limit = fields.Datetime()
 
     # Asignado (Verdadero o Falso)
-    assigned = fields.Boolean(
-        string = 'Asignado'
+    assigned = fields.Boolean()
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Assigned to'
     )
 
     # Acciones a realizar (Html)
-    actions_todo = fields.Html(
-        string = 'Acciones a realizar'
-    )
+    actions_todo = fields.Html()
