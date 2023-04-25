@@ -31,7 +31,9 @@ class HelpdeskTicket(models.Model):
     date_limit = fields.Datetime()
 
     # Asignado (Verdadero o Falso)
-    assigned = fields.Boolean()
+    assigned = fields.Boolean(
+        readonly=True,
+    )
     user_id = fields.Many2one(
         comodel_name='res.users',
         string='Assigned to'
@@ -39,3 +41,16 @@ class HelpdeskTicket(models.Model):
 
     # Acciones a realizar (Html)
     actions_todo = fields.Html()
+
+    # Añadir el campo Estado [Nuevo, Asignado, En proceso, Pendiente, Resuelto, Cancelado], que por defecto sea Nuevo
+    state = fields.Selection(
+        selection=[
+        ('new', 'New'),
+        ('assigned', 'Asigned'),
+        ('in_process', 'In Process'),
+        ('pending', 'Pending'),
+        ('resolved', 'Resolved'),
+        ('cancelled', 'Cancelled'),
+        ],
+        default='new',
+    )
