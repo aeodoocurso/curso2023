@@ -16,10 +16,8 @@
     <record id="res_groups_helpdesk_manager" model="res.groups">
         <field name="name">Manager</field>
         <field name="category_id" ref="ir_module_category_helpdesk"/>
-
         <!-- Hacemos que el administrador, herede los permisos del grupo de usuarios -->
         <field name="implied_ids" eval="[(4, ref('res_groups_helpdesk_user'))]"/>
-        
         <!-- Hacemos que, el primer usuario que se crea, sea administrador -->
         <field name="users" eval="[(4, ref('base.user_admin'))]"/>
     </record>
