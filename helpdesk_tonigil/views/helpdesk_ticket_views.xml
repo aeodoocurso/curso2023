@@ -15,7 +15,9 @@
     </record>
 
     <!-- Creamos el menú donde abrir la acción -->
+    <!-- Este aparece en el menú principal -->
     <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
+    <!-- Este aparece dentro del menú Helpdesk, por el parent -->
     <menuitem id="helpdesk_ticket_open" name="Tickets" sequence="10" parent="helpdesk_menu" action="helpdesk_ticket_action"/>
 
 </odoo>
