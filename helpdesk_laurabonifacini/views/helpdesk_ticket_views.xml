@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_help_desk_ticket_view" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.tree</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="Tickets">
+                <!--Campos-->
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="user_id"/>
+                <!--El campo fecha que sea opcional mostrarlo y mostrarlo por defecto-->
+                <field name="date" optional="show"/>
+                <field name="date_limit" optional="hide"/>
+                <field name="state"/>   
+            </tree>
+        </field>
+    </record>
+
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Helpdesk Tickets</field>
         <field name="type">ir.actions.act_window</field>
