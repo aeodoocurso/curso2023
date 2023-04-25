@@ -17,9 +17,26 @@ class Helpdesk(models.Model):
     date_limit          = fields.Datetime(string="Limit Date & Time")
 
     #Asignado
-    assigned            = fields.Boolean()
+    assigned            = fields.Boolean(readonly=True)
+
+    user_id             = fields.Many2one(comodel_name='res.users', string='Assigned to')
 
     #Acciones a realizar
     actions_todo        = fields.Html()
+
+    #estado
+    state = fields.Selection(
+        selection=[
+            ('new', 'Nuevo'),
+            ('assigned', 'Asignado'),
+            ('in_process', 'En proceso'),
+            ('pending', 'Pendiente'),
+            ('resolved', 'Resuelto'),
+            ('canceled', 'Cancelado')],
+            string='Estado', default='new',
+            )
+    
+    #secuencia
+    sequence = fields.Integer(default=10, help="Secuencia para el orden")
 
 
