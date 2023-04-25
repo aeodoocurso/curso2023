@@ -27,3 +27,4 @@ Revisar también si el nombre y apellidos son correctos.
 |Miguel Angel | Simó Francés | Miguel Angel#8253 | masimof | SI |
 | Javier | Parra Reig | jparrareig#1910 | jparrareig | SI | SI |
 |David | Ivorra Torres| David Ivorra| ivorra78|SI | SI|
+|Cesar | Acevedo Gimenez| Santanas| acevedce-pc|SI | SI|
