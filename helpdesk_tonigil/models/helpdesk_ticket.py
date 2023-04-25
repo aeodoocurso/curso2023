@@ -14,7 +14,6 @@ class HelpdeskTicket(models.Model):
         help="Resume en pocas palabras, un título para la incidencia"
     )
 
-
     # Descripción
     description = fields.Text(
         string = 'Descripción',

@@ -2,6 +2,45 @@
 
 <odoo>
 
+    <!-- Creamos el formulario -->
+    <record id="helpdesk_ticket_form" model="ir.ui.view">
+        <field name="name">Helpdesk.tickets.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                        <!--<field name="state"/> -->
+
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
+                </header>
+                <sheet>
+                    <div class="oe_tittle">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="date_limit"/>
+                        </group>
+                        <group>
+                            <field name="user_id"/>
+                        </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page string="To Do" name="to_do">
+                            <field name="actions_todo"/>
+                        </page>
+                    </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <!-- Creamos la vista -->
     <record id="helpdesk_ticket_tree" model="ir.ui.view">
         <field name="name">Helpdesk.tickets.tree</field>
