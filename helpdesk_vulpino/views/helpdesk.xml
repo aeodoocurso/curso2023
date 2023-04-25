@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
+
+    <!-- VISTA TREE -->
         <record model="ir.ui.view" id="helpdesk_tree_view">
             <field name="name">Helpdesk tickets</field>
             <field name="model">helpdesk.ticket</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name" optional="show"/>
-                    <field name="description" optional="show"/>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="user_id" widget="many2one_avatar_user"/>
+                    <field name="stage"></field>
+                    <field name="description"/>
                     <field name="date" optional="show"/>
-                    <field name="limit_datetime" optional="show"/>
-                    <field name="assign" optional="show"/>
+                    <field name="limit_datetime" optional="hidden"/>
+                    <field name="assign"/>
                     <field name="actions_todo"/>
                 </tree>
+            </field>
+        </record>
+        
+        <!-- VISTA FORM -->
+        <record id="helpdesk_ticket_view_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.view.form</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <form string="Tickets">
+                    <header>
+                        <field name="stage" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}" attrs="{'invisible': [('stage', '=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title pe-0">
+                            <h1>
+                                <div class="d-flex w-100">
+                                    <field name="name" placeholder="Ticket name..."/>
+                                </div>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="esquerra">
+                                <field name="date" optional="show"/>
+                                <field name="limit_datetime" optional="hidden"/>
+                            </group>
+                            <group name="dreta">
+                                <field name="user_id" widget="many2one_avatar_user"></field>
+                                <field name="assign"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="description" string="Details">    
+                                <field name="description" placeholder="Description..."></field>
+                            </page>
+                            <page name="todo" string="Actions To do">
+                                <field name="actions_todo"></field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
             </field>
         </record>
     </data>
