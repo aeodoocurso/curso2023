@@ -51,6 +51,24 @@ class HelpDeskTicket(models.Model):
         default='new',
     )
 
-    # 
+    actions_ids = fields.Many2one(
+        comodel_name='helpdesk.ticket.action',
+        string="Actions ID's"
+        )
+
+    def update_description(self):
+        self.write({'name': "OK"})
+
+    def update_all_description(self):
+        self.ensure_one()
+        all_tickets = self.env['helpdesk.ticket'].search([])
+        all_tickets.update_descritpion()
+
+    def set_done(self):
+        self.write({'name': "OK"})
+
+    def set_todo(self):
+        self.write({'name': "OK"})         
+
 
     

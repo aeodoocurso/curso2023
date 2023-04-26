@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="view_help_desk_ticket_form" model="ir.ui.view">
-        <field name="name">view.helpdesk_ticket.form</field>
-        <field name="model">helpdesk.ticket</field>
+    <record id="view_helpdesk_ticket_tag_form" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.tag.form</field>
+        <field name="model">helpdesk.ticket.tag</field>
         <field name="arch" type="xml">
             <form>
                 <!--Header con status bar-->
@@ -16,33 +15,21 @@
                         <h1>
                             <field name="name"/>
                         </h1>    
-                        <group>
-                            <group>
-                                <field name="date"/>
-                                <field name="date_limit"/>
-                            </group>
-                            <group>
-                                <field name="user_id"/>
-                            </group>
-                        </group> 
-                        <notebook>
+                        <!--notebook>
                             <page string="Description" name="description">
                             <button string="Update Description" name="update_description" type="object" class="btn-primary"/>
                                 <field name="description"/>
                             </page>
-                            <page string="To Do" name="to_do">
+                            <page string="Actions to Do" name="to_do">
                                 <field name="actions_todo"/>
                             </page>
                             <page string="Actions" name="actions">
-                            <!--button string="Set all as done" name="set_actions_as_done" type="object" class="btn-primary"/-->
                                 <field name="actions_ids">
                                     <tree string="Actions">
                                         <field name="name"/>
                                         <field name="state"/>
                                     </tree>
                                     <form>
-                                        <button string="Update Description" name="set_done" type="object" class="btn-primary"/>
-                                        <button string="Update Description" name="set_todo" type="object" class="btn-primary"/>
                                         <group>
                                             <field name="name"/>
                                             <field name="state"/>
@@ -50,15 +37,15 @@
                                     </form>
                                 </field>
                             </page>
-                        </notebook>   
+                        </notebook-->   
                     </div>    
                 </sheet>    
             </form>
         </field>
     </record>
 
-    <record id="view_help_desk_ticket_tree" model="ir.ui.view">
-        <field name="name">view.helpdesk_ticket.tree</field>
+    <record id="view_helpdesk_ticket_tag_tree" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.tag.tree</field>
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
             <tree string="Tickets">
@@ -67,23 +54,19 @@
                 <field name="name"/>
                 <field name="user_id"/>
                 <!--El campo fecha que sea opcional mostrarlo y mostrarlo por defecto-->
-                <field name="date" optional="show"/>
-                <field name="date_limit" optional="hide"/>
-                <field name="state"/>
-                <button string="Update Description" name="update_description" type="object" class="btn-primary"/>
-                <button string="Update All Descriptions" name="update_all_description" type="object" class="btn-primary"/>   
+                <field name="date" optional="show"/> 
             </tree>
         </field>
     </record>
 
-    <record id="helpdesk_ticket_action" model="ir.actions.act_window">
+    <record id="helpdesk_ticket_tag_action" model="ir.actions.act_window">
         <field name="name">Helpdesk Tickets</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">helpdesk.ticket</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
-    <menuitem id="helpdesk_ticket_open" name="Tickets" sequence="10" parent="helpdesk_menu" action="helpdesk_ticket_action"/>
+    <menuitem id="helpdesk_menu_config" name="Config" sequence="10" parent="helpdesk_menu"/>
+    <menuitem id="helpdesk_ticket_tag_open" name="Tags" sequence="10" parent="helpdesk_menu_config" action="helpdesk_ticket_tag_action"/>
 
-</odoo>    
+</odoo>
