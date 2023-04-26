@@ -1,0 +1,10 @@
+# Folders
+.settings
+.history
+__pycache__
+
+# Files
+*.pyc
+*.prefs
+.project
+.pydevproject
