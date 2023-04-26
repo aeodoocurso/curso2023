@@ -8,8 +8,6 @@
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
             <form>
-                        <!--<field name="state"/> -->
-
                 <header>
                     <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
                 </header>

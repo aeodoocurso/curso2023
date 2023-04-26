@@ -18,7 +18,8 @@ class HelpdeskTicket(models.Model):
     description = fields.Text(
         string = 'Descripción',
         help="Escribe detalladamente la incidencia. Cuanta más información aportes, más fácil será ayudarte.",
-        default="""Versión a la que afecta:
+        default="""
+        Versión a la que afecta:
         Módulo:
         Pasos para replicar:
         Módulos personalizados:
