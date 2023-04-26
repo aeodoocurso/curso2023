@@ -8,9 +8,9 @@ class HelpdeskTicketAction(models.Model):
     state = fields.Selection(
         selection=[
         ('done', 'Done'),
-        ('assigned', 'Assigned'),
+        ('to_do', 'To Do'),
         ],
-        default='new',
+        default='to_do',
     )
 
     def set_actions_as_done(self):
