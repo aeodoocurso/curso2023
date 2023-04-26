@@ -24,7 +24,9 @@
                         </group>
                         <group>
                             <field name="user_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </group>
+                    </group>
                     <notebook>
                         <page string="Description" name="description">
                             <field name="description"/>
@@ -32,8 +34,25 @@
                         <page string="To Do" name="to_do">
                             <field name="actions_todo"/>
                         </page>
+                        <page string="Actions" name="actions">
+                            <!-- <label for="actions_todo" string="To Do"/> -->
+                            <button string="Set all as done" name="set_actions_as_done" type="object"/>
+                            <field name="action_ids">
+                                <tree string="Actions">
+                                    <field name="name"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <button string="Set done" name="set_done" type="object" class="btn-primary"/>
+                                    <button string="Set todo" name="set_todo" type="object" class="btn-primary"/>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="state" readonly="1"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
                     </notebook>
-                    </group>
                 </sheet>
             </form>
         </field>
@@ -51,7 +70,7 @@
                 <field name="state"/>
                 <field name="date" optional="show"/>
                 <field name="date_limit" optional="hide"/>
-                <!-- Estos botones sirven para llamar a los métodos referenciados en el tag "name" -->
+                <!-- Estos botones sirven para llamar a los métodos referenciados en la etiqueta "name" -->
                 <button string="Update description" name="update_description" type="object" class="btn-primary"/>
                 <button string="Update all description" name="update_all_description" type="object" class="btn-primary"/>
             </tree>
