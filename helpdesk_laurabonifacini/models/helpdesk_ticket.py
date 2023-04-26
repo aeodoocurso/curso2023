@@ -53,7 +53,12 @@ class HelpDeskTicket(models.Model):
 
     actions_ids = fields.Many2one(
         comodel_name='helpdesk.ticket.action',
-        string="Actions ID's"
+        string="Actions ID's",
+        )
+    
+    tags_ids = fields.Many2one(
+        comodel_name='helpdesk.ticket.tag',
+        string="Tag ID's",
         )
 
     def update_description(self):
@@ -65,10 +70,14 @@ class HelpDeskTicket(models.Model):
         all_tickets.update_descritpion()
 
     def set_done(self):
-        self.write({'name': "OK"})
+        self.write({'state': "Done"})
 
     def set_todo(self):
-        self.write({'name': "OK"})         
+        self.write({'state': "To Do"})     
+
+    def set_all_todo(self):
+        all_tickets = self.env['helpdesk.ticket'].search([])
+        all_tickets.set_todo()           
 
 
     
