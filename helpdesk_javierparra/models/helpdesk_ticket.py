@@ -55,3 +55,31 @@ class HelpdeskTicket(models.Model):
 
 
     actions_todo = fields.Html()
+
+    tag_ids = fields.Many2many(
+        comodel_name='helpdesk.ticket.tag',
+        #relation='helpdesk_ticket_tag_rel',
+        #column1='ticket_id',
+        #column2='tag_id',
+        string='Tags')
+
+    action_ids = fields.One2many(
+        comodel_name='helpdesk.ticket.action',
+        #relation='helpdesk_ticket_action_rel',
+        #column1='ticket_id',
+        #column2='action_id',
+        inverse_name='ticket_id',
+        string='Actions')
+
+        
+
+    
+    def update_description(self):
+        #self.write({'description': "Nueva descripcion"})
+        for ticket in self:
+            ticket.description = "Nueva descripcion"
+        
+
+    def update_all_descriptions(self):
+        all_tickets = self.env['helpdesk.ticket'].search([])
+        all_tickets.update_description()    

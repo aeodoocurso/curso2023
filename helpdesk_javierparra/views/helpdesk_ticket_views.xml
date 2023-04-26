@@ -4,6 +4,7 @@
   <!-- vista de tipo tree para el modelo que muestra más información-->
   <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
     <field name="name">view.helpdesk_ticket.tree</field>
+    
     <field name="model">helpdesk.ticket</field>
     <field name= "arch" type='xml' >
       <tree string="Tickets">
@@ -12,8 +13,15 @@
         <field name="user_id"/>
         <field name="date" optional="show"/>
         <field name="date_limit" optional="hide"/>
+        <field name="description">
+        </field>
+
+        <button string="Update Description" name="update_description" type="object" class="btn-primary"/>
+        <button string="Update All Description" name="update_all_descriptions" type="object" class="btn-primary"/>
         <field name="state"/>
+        
       </tree>
+      
     </field>
   </record>
 
@@ -49,14 +57,19 @@
             </group>
             <group>
               <field name="user_id"/>
+              <field name="tag_ids" widget="many2many_tags"/>
             </group>
           </group>
           <notebook>
             <page string="Description" name='description'>
+              <button string="Update Description" name="update_description" type="object" class="btn-primary"/>
               <field name="description"/>
             </page>
             <page string="To Do" name='to_do'>
               <field name="actions_todo"/>
+            </page>
+            <page string="Actions" name='actions'>
+              <field name="action_ids"/> 
             </page>
             </notebook>
         </sheet>
