@@ -58,3 +58,21 @@ class HelpdeskTicket(models.Model):
         ],
         default='new',
     )
+
+    tag_ids = fields.Many2many(
+        comodel_name='helpdesk.ticket.tag',
+        # relation='helpdesk_ticket_tag_rel',
+        # column1='ticket_id',
+        # column2='tag_id',
+        string='Tags')
+    action_ids = fields.One2many(
+        comodel_name='helpdesk.ticket.action',
+        inverse_name='ticket_id',
+        string='Actions')
+    
+    
+
+    
+    def set_actions_as_done(self):
+        self.ensure_one()
+        self.action_ids.set_done()
