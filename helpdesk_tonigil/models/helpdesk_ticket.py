@@ -67,3 +67,21 @@ class HelpdeskTicket(models.Model):
         self.ensure_one()
         all_tickets = self.env['helpdesk.ticket'].search([])
         all_tickets.update_description()
+
+    # Relación para poder poner muchos tags sobre muchos ticket
+    tag_ids = fields.Many2many(
+        comodel_name='helpdesk.ticket.tag',
+        # relation='helpdesk_ticket_tag_rel',
+        # column1='ticket_id',
+        # column2='tag_id',
+        string='Tags')
+
+    # Relación para poder poner muchos actios sobre un ticket
+    action_ids = fields.One2many(
+        comodel_name='helpdesk.ticket.action',
+        inverse_name='ticket_id',
+        string='Actions')
+    
+    def set_actions_as_done(self):
+        self.ensure_one()
+        self.action_ids.set_done()

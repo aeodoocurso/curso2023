@@ -9,9 +9,22 @@ class HelpdeskTicketAction(models.Model):
 name = fields.Char(
     required=True
 )
+
+# Estado
 state = fields.Selection(
     selection=[
         ('todo', 'To Do'),
-        ('done', 'Done')
-    ]
+        ('done', 'Done'),
+    ],
+    default='todo'
 )
+
+ticket_id = fields.Many2one(
+    comodel_name='helpdesk.ticket',
+    string='ticket')
+    
+def set_done(self):
+    self.write({'state': "done"})
+
+def set_todo(self):
+    self.write({'state': "todo"})
