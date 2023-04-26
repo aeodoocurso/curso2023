@@ -57,3 +57,13 @@ class HelpdeskTicket(models.Model):
         ],
         default='new',
     )
+
+    # Añadir el método que actualiza la descripción del ticket (únicamente el registro 'self')
+    def update_description(self):
+        self.write({'name': "Un valor X"})
+
+
+    def update_all_description(self):
+        self.ensure_one()
+        all_tickets = self.env['helpdesk.ticket'].search([])
+        all_tickets.update_description()

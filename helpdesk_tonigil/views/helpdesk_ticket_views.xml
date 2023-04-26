@@ -51,6 +51,9 @@
                 <field name="state"/>
                 <field name="date" optional="show"/>
                 <field name="date_limit" optional="hide"/>
+                <!-- Estos botones sirven para llamar a los métodos referenciados en el tag "name" -->
+                <button string="Update description" name="update_description" type="object" class="btn-primary"/>
+                <button string="Update all description" name="update_all_description" type="object" class="btn-primary"/>
             </tree>
         </field>
     </record>
