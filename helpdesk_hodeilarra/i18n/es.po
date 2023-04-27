@@ -1,0 +1,257 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* helpdesk_hodeilarra
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-27 07:35+0000\n"
+"PO-Revision-Date: 2023-04-27 07:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__action_ids
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
+msgid "Actions"
+msgstr "Acciones"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__actions_todo
+msgid "Actions Todo"
+msgstr "Acciones a realizar"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket__state__assigned
+msgid "Asignado"
+msgstr "Asignado"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__user_id
+msgid "Assigned to"
+msgstr "Asignado a"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket__state__canceled
+msgid "Cancelado"
+msgstr "Cancelado"
+
+#. module: helpdesk_hodeilarra
+#: model_terms:ir.actions.act_window,help:helpdesk_hodeilarra.helpdesk_ticket_action
+msgid "Create a new ticket"
+msgstr "Crear nuevo ticket"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__create_uid
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__create_uid
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_tag__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__create_date
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__create_date
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_tag__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,help:helpdesk_hodeilarra.field_helpdesk_ticket__description
+msgid "Describe detalladamente la incidencia y cómo replicarla."
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__description
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__display_name
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__display_name
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_tag__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket_action__state__done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket__state__in_process
+msgid "En proceso"
+msgstr "En proceso"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__state
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__state
+msgid "Estado"
+msgstr "Estado"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.module.category,name:helpdesk_hodeilarra.ir_module_category_helpdesk
+#: model:ir.ui.menu,name:helpdesk_hodeilarra.helpdesk_menu
+msgid "Helpdesk"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model,name:helpdesk_hodeilarra.model_helpdesk_ticket
+msgid "Helpdesk Ticket"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model,name:helpdesk_hodeilarra.model_helpdesk_ticket_action
+msgid "Helpdesk Ticket Action"
+msgstr "Acción de Helpdesk ticket"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model,name:helpdesk_hodeilarra.model_helpdesk_ticket_tag
+msgid "Helpdesk Ticket Tag"
+msgstr "Tag de Helpdesk ticket"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.actions.act_window,name:helpdesk_hodeilarra.helpdesk_ticket_action
+msgid "Helpdesk Tickets"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__id
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__id
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_tag__id
+msgid "ID"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket____last_update
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action____last_update
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_tag____last_update
+msgid "Last Modified on"
+msgstr "Última modificación"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__write_uid
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__write_uid
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_tag__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__write_date
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__write_date
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_tag__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__date_limit
+msgid "Limit Date & Time"
+msgstr "Fecha y hora límite"
+
+#. module: helpdesk_hodeilarra
+#: model:res.groups,name:helpdesk_hodeilarra.res_groups_helpdesk_manager
+msgid "Manager"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__nombre
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_tag__nombre
+msgid "Nombre"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket__state__new
+msgid "Nuevo"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket__state__pending
+msgid "Pendiente"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket__state__resolved
+msgid "Resuelto"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,help:helpdesk_hodeilarra.field_helpdesk_ticket__sequence
+msgid "Secuencia para el orden"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
+msgid "Set all as done"
+msgstr "Establecer todo como hecho"
+
+#. module: helpdesk_hodeilarra
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
+msgid "Set done"
+msgstr "Establecer como hecho"
+
+#. module: helpdesk_hodeilarra
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
+msgid "Set todo"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__tag_ids
+msgid "Tags"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket_action__ticket_id
+msgid "Ticket"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.ui.menu,name:helpdesk_hodeilarra.helpdesk_ticket_open
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_tree
+msgid "Tickets"
+msgstr ""
+
+#. module: helpdesk_hodeilarra
+#: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket_action__state__todo
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
+msgid "To do"
+msgstr "Quehacer"
+
+#. module: helpdesk_hodeilarra
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
+msgid "Update all description"
+msgstr "Actualizar todas las descripciones"
+
+#. module: helpdesk_hodeilarra
+#: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
+msgid "Update only this"
+msgstr "Actualizara solo este"
+
+#. module: helpdesk_hodeilarra
+#: model:res.groups,name:helpdesk_hodeilarra.res_groups_helpdesk_user
+msgid "User"
+msgstr ""

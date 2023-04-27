@@ -22,6 +22,7 @@
             <tree string="Tickets" decoration-info="state == 'new'" decoration-muted="state == 'canceled'" decoration-success="state in ('assigned', 'in_process')" decoration-warning="state == 'pending'" decoration-danger="state == 'resolved'">
                 <field name="sequence" widget="handle"/>
                 <field name="nombre"/>
+                <field name="description"/>
                 <field name="user_id"/>
                 <field name="state"/>
                 <field name="date" optional="show"/>
@@ -52,16 +53,39 @@
 
                         <group>
                             <field name="user_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
 
                         </group>
                     </group>
 
                     <notebook>
                         <page string="Description" name="description">
+                            <button string="Update only this" name="update_description" type="object" class="btn-primary"/>
+                            <button string="Update all description" name="update_other_description" type="object" class="btn-primary"/>
                             <field name="description"/>
                         </page>
+
+
                         <page string="To do" name="actions_todo">
                             <field name="actions_todo"/>
+                        </page>
+                        <page string="Actions" name="actions">
+                            <!-- <label for="actions_todo" string="To Do"/> -->
+                            <button string="Set all as done" name="set_actions_as_done" type="object"/>
+                            <field name="action_ids">
+                                <tree string="Actions">
+                                    <field name="name"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <button string="Set done" name="set_done" type="object" class="btn-primary"/>
+                                    <button string="Set todo" name="set_todo" type="object" class="btn-primary"/>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="state" readonly="1"/>
+                                    </group>
+                                </form>
+                            </field>
                         </page>
 
                     </notebook>
