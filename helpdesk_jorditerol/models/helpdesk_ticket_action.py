@@ -11,7 +11,7 @@ class HelpdeskTicketAction(models.Model):
     state = fields.Selection(
         string='state',
         selection=[
-            ('todo', 'Para hacer'), 
+            ('todo', 'To do'), 
             ('done', 'Done'),
         ], 
         default='todo'

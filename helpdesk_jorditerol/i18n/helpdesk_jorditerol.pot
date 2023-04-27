@@ -4,16 +4,22 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0-20230329\n"
+"Project-Id-Version: Odoo Server 16.0-20230418\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-26 15:26+0000\n"
-"PO-Revision-Date: 2023-04-26 15:26+0000\n"
+"POT-Creation-Date: 2023-04-26 20:00+0000\n"
+"PO-Revision-Date: 2023-04-26 20:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: helpdesk_jorditerol
+#: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket__action_ids
+#: model_terms:ir.ui.view,arch_db:helpdesk_jorditerol.helpdesk_ticket_view_form
+msgid "Actions"
+msgstr ""
 
 #. module: helpdesk_jorditerol
 #: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket__actions_todo
@@ -71,6 +77,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket_action__display_name
 #: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket_tag__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: helpdesk_jorditerol
+#: model:ir.model.fields.selection,name:helpdesk_jorditerol.selection__helpdesk_ticket_action__state__done
+msgid "Done"
 msgstr ""
 
 #. module: helpdesk_jorditerol
@@ -139,6 +150,7 @@ msgstr ""
 
 #. module: helpdesk_jorditerol
 #: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket__name
+#: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket_action__name
 #: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket_tag__name
 msgid "Name"
 msgstr ""
@@ -169,7 +181,22 @@ msgid "Sequence"
 msgstr ""
 
 #. module: helpdesk_jorditerol
-#: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket_action__state
+#: model_terms:ir.ui.view,arch_db:helpdesk_jorditerol.helpdesk_ticket_view_form
+msgid "Set all as done"
+msgstr ""
+
+#. module: helpdesk_jorditerol
+#: model_terms:ir.ui.view,arch_db:helpdesk_jorditerol.helpdesk_ticket_view_form
+msgid "Set done"
+msgstr ""
+
+#. module: helpdesk_jorditerol
+#: model_terms:ir.ui.view,arch_db:helpdesk_jorditerol.helpdesk_ticket_view_form
+msgid "Set todo"
+msgstr ""
+
+#. module: helpdesk_jorditerol
+#: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket__state
 msgid "State"
 msgstr ""
 
@@ -179,6 +206,7 @@ msgid "Tags"
 msgstr ""
 
 #. module: helpdesk_jorditerol
+#: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket_action__ticket_id
 #: model_terms:ir.ui.view,arch_db:helpdesk_jorditerol.helpdesk_ticket_view_form
 msgid "Ticket"
 msgstr ""
@@ -192,6 +220,11 @@ msgstr ""
 #. module: helpdesk_jorditerol
 #: model_terms:ir.ui.view,arch_db:helpdesk_jorditerol.helpdesk_ticket_view_form
 msgid "To Do"
+msgstr ""
+
+#. module: helpdesk_jorditerol
+#: model:ir.model.fields.selection,name:helpdesk_jorditerol.selection__helpdesk_ticket_action__state__todo
+msgid "To do"
 msgstr ""
 
 #. module: helpdesk_jorditerol
@@ -212,6 +245,6 @@ msgid "User"
 msgstr ""
 
 #. module: helpdesk_jorditerol
-#: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket__state
-msgid "State"
+#: model:ir.model.fields,field_description:helpdesk_jorditerol.field_helpdesk_ticket_action__state
+msgid "state"
 msgstr ""
