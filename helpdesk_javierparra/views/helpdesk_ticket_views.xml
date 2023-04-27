@@ -69,7 +69,24 @@
               <field name="actions_todo"/>
             </page>
             <page string="Actions" name='actions'>
-              <field name="action_ids"/> 
+            <button string="Set all as done" name="set_all_actions_as_done" type="object" class="btn-primary"/>
+              <field name="action_ids">
+              <tree string="Actions">
+                <field name="name"/>
+                <field name="state"/>
+              </tree>
+                <form>
+
+                  <button string="set done" name="set_done" type="object" class="btn-primary"/>
+                  <button string="set todo" name="set_todo" type="object" class="btn-primary"/>
+                
+                  <group>
+                    <field name="name"/>
+                    <field name="state"  />
+                  </group>
+                </form>
+              </field> 
+
             </page>
             </notebook>
         </sheet>
@@ -88,4 +105,5 @@
     </record>
     <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
     <menuitem id="helpdesk_ticket_open" name="Tickets" sequence="10" parent="helpdesk_menu" action="helpdesk_ticket_action"/>
+    <menuitem id="helpdesk_ticket_config" name="Configuration" sequence="20" parent="helpdesk_menu"/>
 </odoo>

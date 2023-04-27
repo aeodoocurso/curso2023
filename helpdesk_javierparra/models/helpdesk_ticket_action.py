@@ -23,4 +23,10 @@ class HelpdeskTicketAction(models.Model):
         string='Ticket',
     )
 
-        
+    
+    def set_done(self):
+        self.state = 'done'
+
+    def set_todo(self):
+        self.state = 'todo'
+            

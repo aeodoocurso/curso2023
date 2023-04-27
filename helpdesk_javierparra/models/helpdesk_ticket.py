@@ -71,8 +71,6 @@ class HelpdeskTicket(models.Model):
         inverse_name='ticket_id',
         string='Actions')
 
-        
-
     
     def update_description(self):
         #self.write({'description': "Nueva descripcion"})
@@ -83,3 +81,7 @@ class HelpdeskTicket(models.Model):
     def update_all_descriptions(self):
         all_tickets = self.env['helpdesk.ticket'].search([])
         all_tickets.update_description()    
+
+    def set_all_actions_as_done(self):
+        self.ensure_one()
+        self.action_ids.set_done()
