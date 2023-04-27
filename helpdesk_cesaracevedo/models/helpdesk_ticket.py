@@ -8,18 +8,23 @@ class HelpdeskTicket(models.Model):
     # Nombre
     name = fields.Char(
         required=True,
-        help="Resume en procas palabras un titulo para la incidencia."
+        help="Small introduction to the incident."
     )
 
+    sequence = fields.Integer(
+        default=10,
+        help="Incidence sequence order."
+    )    
+
     # Descripción
-    descrioption = fields.Text(
-        help="Escribe detalladamente la incidencia y como replicarla.",
-        default="""Version a la que afecta:
-    Modulo:
-    Pasos para replicar:
-    Modulos personalizados:
-        """
-    )
+    description = fields.Text(
+                                help="Describe incident and how to replicate.",
+                                default="""Version:
+                                            Model:
+                                            How to replicate:
+                                            Personal Moduls:
+                                        """
+                            )
 
     # Fecha
     date = fields.Date()
@@ -33,3 +38,43 @@ class HelpdeskTicket(models.Model):
 
     # Acciones a realizar (Html)
     actions_todo = fields.Html()
+
+# Asignado (Verdadero o Falso), que sea de solo lectura
+    assigned = fields.Boolean(
+        readonly=True,
+    )
+
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Assignet to')
+    
+    # Acciones a realizar (Html)
+    actions_todo = fields.Html()
+    
+    # Añadir el campo Estado [Nuevo, Asignado, En proceso, Pendiente, Resuelto, Cancelado], que por defecto sea Nuevo
+    state = fields.Selection(
+        selection=[
+            ('new', 'New'),
+            ('assigned', 'Assigned'),
+            ('in_process', 'In Process'),
+            ('pending', 'Pending'),
+            ('resolved', 'Resolved'),
+            ('canceled', 'Canceled'),
+        ],
+        default='new',
+    )
+
+    tag_ids = fields.Many2many(
+        comodel_name='helpdesk.ticket.tag',
+        string='Tags')
+    action_ids = fields.One2many(
+        comodel_name='helpdesk.ticket.action',
+        inverse_name='ticket_id',
+        string='Actions')
+    
+    
+
+    
+    def set_actions_as_done(self):
+        self.ensure_one()
+        self.action_ids.set_done()    

@@ -1,6 +1,78 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <record id="view_helpdesk_ticket_form" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="date_limit"/>
+                        </group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <!-- <label for="description" string="Description"/> -->
+                            <field name="description"/>
+                        </page>
+                        <page string="To Do" name="to_do">
+                            <!-- <label for="actions_todo" string="To Do"/> -->
+                            <field name="actions_todo"/>
+                        </page>
+                        <page string="Actions" name="actions">
+                            <!-- <label for="actions_todo" string="To Do"/> -->
+                            <button string="Set all as done" name="set_actions_as_done" type="object"/>
+                            <field name="action_ids">
+                                <tree string="Actions">
+                                    <field name="name"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <button string="Set done" name="set_done" type="object" class="btn-primary"/>
+                                    <button string="Set todo" name="set_todo" type="object" class="btn-primary"/>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="state" readonly="1"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.tree</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="Tickets">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="date" optional="show"/>
+                <field name="date_limit" optional="hide"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
 
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Heldpesk Tickets</field>
@@ -13,7 +85,7 @@
             </p>
         </field>
     </record>
-
+    
     <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
     <menuitem id="helpdesk_ticket_open" name="Tickets" sequence="10" parent="helpdesk_menu" action="helpdesk_ticket_action"/>
 
