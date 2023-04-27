@@ -1,23 +1,25 @@
-from odoo import models, api, fields
+from odoo import models, fields
 
 class HelpdeskTicketAction(models.Model):
     _name = 'helpdesk.ticket.action'
-    _description = "Desc"
+    _description = "Helpdesk Ticket Action"
 
     name = fields.Char(required=True)
+
     state = fields.Selection(
         selection=[
-        ('done', 'Done'),
-        ('to_do', 'To Do'),
+            ('to_do', 'To Do'),
+            ('done', 'Done'),
         ],
         default='to_do',
     )
 
-    def set_actions_as_done(self):
-        self.state = 'done'
+    ticket_id = fields.Many2one(
+        comodel_name='helpdesk.ticket',
+        string='ticket')
 
     def set_done(self):
-        self.write({'name': "OK"})
+        self.write({'state': "done"})
 
     def set_todo(self):
-        self.write({'name': "OK"})      
+        self.write({'state': "to_do"})     

@@ -1,4 +1,4 @@
-from odoo import models, api, fields
+from odoo import models, fields
 
 class HelpDeskTicket(models.Model):
     _name = 'helpdesk.ticket'
@@ -8,15 +8,14 @@ class HelpDeskTicket(models.Model):
     name = fields.Char(required=True, help="Título incidencia resumida.")
 
     # Secuencia
-    sequence = fields.Integer(
-        default=10,
-        help='Secuencia para'
-    )
+    sequence = fields.Integer(default=10, help='Secuencia para')
 
     # Descripción
     description = fields.Text(
-        default="""Versión:
-            Módulo:
+        help="Escribe detalladamente la incidencia y como replicarla.",
+        default="""Version a la que afecta:
+        Módulo:
+        Pasos:
             """
     )
 
@@ -24,13 +23,11 @@ class HelpDeskTicket(models.Model):
     date = fields.Date()
 
     # Fecha y hora limite
-    date_limit = fields.Datetime(
-        string='Limit Date & Time')
+    date_limit = fields.Datetime( string='Limit Date & Time')
 
     # Asignado (Verdadero o Falso)
-    assigned = fields.Boolean(
-        readonly=True,
-    )
+    assigned = fields.Boolean(readonly=True)
+
     user_id = fields.Many2one(
         comodel_name='res.users', 
         string='Assigned to')
@@ -51,33 +48,30 @@ class HelpDeskTicket(models.Model):
         default='new',
     )
 
-    actions_ids = fields.Many2one(
-        comodel_name='helpdesk.ticket.action',
-        string="Actions ID's",
+    tag_ids = fields.Many2one(
+        comodel_name = 'helpdesk.ticket.tag',
+        string = "Tag",
+        )
+
+    action_ids = fields.One2many(
+        comodel_name = 'helpdesk.ticket.action',
+        inverse_name = 'ticket_id',
+        string="Actions",
         )
     
-    tags_ids = fields.Many2one(
-        comodel_name='helpdesk.ticket.tag',
-        string="Tag ID's",
-        )
+    
 
-    def update_description(self):
-        self.write({'name': "OK"})
+    # def update_description(self):
+    #     self.write({'name': "OK"})
 
-    def update_all_description(self):
+    # def update_all_description(self):
+    #     self.ensure_one()
+    #     all_tickets = self.env['helpdesk.ticket'].search([])
+    #     all_tickets.update_description()
+
+    def set_actions_as_done(self):
         self.ensure_one()
-        all_tickets = self.env['helpdesk.ticket'].search([])
-        all_tickets.update_descritpion()
-
-    def set_done(self):
-        self.write({'state': "Done"})
-
-    def set_todo(self):
-        self.write({'state': "To Do"})     
-
-    def set_all_todo(self):
-        all_tickets = self.env['helpdesk.ticket'].search([])
-        all_tickets.set_todo()           
+        self.actions_ids.set_done()        
 
 
     

@@ -1,69 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_helpdesk_ticket_tag_form" model="ir.ui.view">
-        <field name="name">view.helpdesk_ticket.tag.form</field>
+        <field name="name">view.helpdesk_ticket_tag.form</field>
         <field name="model">helpdesk.ticket.tag</field>
         <field name="arch" type="xml">
             <form>
-                <!--Header con status bar-->
-                <header>
-                    <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
-                </header>
-                
                 <sheet>
-                    <div class="oe_title">
-                        <h1>
-                            <field name="name"/>
-                        </h1>    
-                        <!--notebook>
-                            <page string="Description" name="description">
-                            <button string="Update Description" name="update_description" type="object" class="btn-primary"/>
-                                <field name="description"/>
-                            </page>
-                            <page string="Actions to Do" name="to_do">
-                                <field name="actions_todo"/>
-                            </page>
-                            <page string="Actions" name="actions">
-                                <field name="actions_ids">
-                                    <tree string="Actions">
-                                        <field name="name"/>
-                                        <field name="state"/>
-                                    </tree>
-                                    <form>
-                                        <group>
-                                            <field name="name"/>
-                                            <field name="state"/>
-                                        </group>
-                                    </form>
-                                </field>
-                            </page>
-                        </notebook-->   
-                    </div>    
-                </sheet>    
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>   
             </form>
         </field>
     </record>
 
     <record id="view_helpdesk_ticket_tag_tree" model="ir.ui.view">
-        <field name="name">view.helpdesk_ticket.tag.tree</field>
-        <field name="model">helpdesk.ticket</field>
+        <field name="name">view.helpdesk_ticket_tag.tree</field>
+        <field name="model">helpdesk.ticket.tag</field>
         <field name="arch" type="xml">
-            <tree string="Tickets">
-                <!--Campos-->
-                <field name="sequence" widget="handle"/>
+            <tree string="Ticket Tags">
                 <field name="name"/>
-                <field name="user_id"/>
-                <!--El campo fecha que sea opcional mostrarlo y mostrarlo por defecto-->
-                <field name="date" optional="show"/> 
             </tree>
         </field>
     </record>
 
     <record id="helpdesk_ticket_tag_action" model="ir.actions.act_window">
-        <field name="name">Helpdesk Tickets</field>
+        <field name="name">Helpdesk Tickets Tags</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">helpdesk.ticket</field>
+        <field name="res_model">helpdesk.ticket.tag</field>
         <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new ticket tag
+            </p>
+        </field>
     </record>
 
     <menuitem id="helpdesk_menu_config" name="Config" sequence="10" parent="helpdesk_menu"/>
