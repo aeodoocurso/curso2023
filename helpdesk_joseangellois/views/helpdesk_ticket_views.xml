@@ -26,6 +26,8 @@
                     </group>
                     <notebook>
                         <page name="descrip" string="Descripción">
+                            <!-- <button string="Update" name="update_field" type="object" class="btn-primary"/> -->
+                            <!-- <button string="Update ALL" name="update_all_description" type="object" class="btn-primary"/> -->
                             <field name="description" />
                         </page>                    
                         <page name="todo" string="To Do">
@@ -48,6 +50,8 @@
                 <field name="state" />
                 <field name="date" optional="show" />
                 <field name="date_limit" optional="hide" />
+                <button string="Update" name="update_field" type="object" class="btn-primary"/>
+                <!-- <button string="Update ALL" name="update_all_field" type="object" class="btn-primary"/> -->
             </tree>
         </field>
     </record>

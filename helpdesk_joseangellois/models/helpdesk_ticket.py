@@ -1,4 +1,5 @@
 from odoo import fields, models
+from datetime import datetime
 
 class HelpdeskTicket(models.Model):
 	_name = "helpdesk.ticket"
@@ -40,3 +41,16 @@ class HelpdeskTicket(models.Model):
 		],
 		default='new',
 	)
+
+	# def update_field(self, field, value):
+	def update_field(self):
+		# self.ensure_one()
+		# for record in self:
+		# 	self.name = '****OK*****'
+		# self.write({'name': pytz.timezone("Europe/Madrid").localize()})
+		self.write({'name': datetime.now()})
+	
+	# def update_all_records(self):
+	# 	self.ensure_one()
+	# 	all_tickets = self.env['helpdesk.ticket'].search([])
+	# 	all_tickets.update_field(new_value='')
