@@ -2,7 +2,7 @@
 
 <odoo>
 
-    <!-- Creamos el formulario -->
+    <!-- Creamos la vista formulario -->
     <record id="helpdesk_ticket_form" model="ir.ui.view">
         <field name="name">Helpdesk.tickets.form</field>
         <field name="model">helpdesk.ticket</field>
@@ -58,7 +58,7 @@
         </field>
     </record>
 
-    <!-- Creamos la vista -->
+    <!-- Creamos la vista tree -->
     <record id="helpdesk_ticket_tree" model="ir.ui.view">
         <field name="name">Helpdesk.tickets.tree</field>
         <field name="model">helpdesk.ticket</field>
@@ -76,13 +76,56 @@
             </tree>
         </field>
     </record>
-    
+
+    <!-- Creamos la vista kanban -->
+    <record id="helpdesk_ticket_kanban" model="ir.ui.view">
+        <field name="name">Helpdesk.tickets.kanban</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="user_id">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="user_id"/>
+                <template>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                            <div class="oe_kanban_details d-flex flex-column justify-content-between">
+                                <strong class="o_kanban_record_title oe_partner_heading">
+                                    <field name="name"/>
+                                </strong>
+                                <field name="date"/>
+                                <field name="user_id"/>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+    </record>
+
+        <!-- Creamos la vista search-->
+    <record id="helpdesk_ticket_search" model="ir.ui.view">
+        <field name="name">view.Helpdesk.tickets.search</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <search string="Tickets">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="filter_to_assigned" string="Assigned" domain="[('assigned'),'=',True]"/>
+                <field name="filter_no_date" string="No date" domain="[('date'),'=',False]"/>
+                <field name="user" string="User" context="[('assigned'),'=',True]"/>
+                <field name="user" string="User" context="[(''),'=',True]"/>
+            </search>
+        </field>
+    </record>
+
+
     <!-- Creamos la acción -->
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Helpdesk Tickets</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Crea un ticket nuevo
