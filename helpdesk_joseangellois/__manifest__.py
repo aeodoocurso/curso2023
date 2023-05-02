@@ -5,7 +5,7 @@
     "summary": "Gestión de incidencias",
     "version": "16.0.1.0.0",
     "category": "HelpDesk",
-    "author": "José Ángel Lois. Odoo Community Association (OCA)",
+    "author": "José Ángel Lois",
     "maintainers": ["joseangellois"],
     "license": "AGPL-3",
     "installable": True,
@@ -15,6 +15,7 @@
     "data": [
         "security/helpdesk_security.xml",
         "security/ir.model.access.csv",
-        "views/helpdesk_ticket_views.xml"
+        "views/helpdesk_ticket_views.xml",
+        "views/helpdesk_ticket_tag_views.xml"
     ]
 }
