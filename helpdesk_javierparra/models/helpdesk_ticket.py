@@ -56,6 +56,10 @@ class HelpdeskTicket(models.Model):
 
     actions_todo = fields.Html()
 
+    color = fields.Integer('Color Index', default=0)
+
+    amount_time = fields.Float(string='Amount of time')
+
     tag_ids = fields.Many2many(
         comodel_name='helpdesk.ticket.tag',
         #relation='helpdesk_ticket_tag_rel',
