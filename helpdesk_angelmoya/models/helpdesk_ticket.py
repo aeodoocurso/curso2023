@@ -76,3 +76,5 @@ class HelpdeskTicket(models.Model):
     def set_actions_as_done(self):
         self.ensure_one()
         self.action_ids.set_done()
+    
+    color = fields.Integer('Color Index', default=0)
