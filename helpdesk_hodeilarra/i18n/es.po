@@ -217,7 +217,7 @@ msgstr "Establecer como hecho"
 #. module: helpdesk_hodeilarra
 #: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
 msgid "Set todo"
-msgstr ""
+msgstr "Establecer por hacer"
 
 #. module: helpdesk_hodeilarra
 #: model:ir.model.fields,field_description:helpdesk_hodeilarra.field_helpdesk_ticket__tag_ids
@@ -239,7 +239,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:helpdesk_hodeilarra.selection__helpdesk_ticket_action__state__todo
 #: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form
 msgid "To do"
-msgstr "Quehacer"
+msgstr "Por hacer"
 
 #. module: helpdesk_hodeilarra
 #: model_terms:ir.ui.view,arch_db:helpdesk_hodeilarra.view_helpdesk_ticket_form

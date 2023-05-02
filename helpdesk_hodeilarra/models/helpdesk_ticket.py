@@ -35,6 +35,10 @@ class Helpdesk(models.Model):
             ('canceled', 'Cancelado')],
             string='Estado', default='new',
             )
+
+    color = fields.Integer('Color Index', default=0)
+
+    amount_time = fields.Float(string="Amount of time")
     
     #secuencia
     sequence = fields.Integer(default=10, help="Secuencia para el orden")
