@@ -1,4 +1,5 @@
-from odoo import  fields, models
+from odoo import  fields, models, api, Command
+from odoo.exceptions import UserError
 
 class HelpdeskTicket(models.Model):
     _name = 'helpdesk.ticket'
@@ -24,10 +25,7 @@ class HelpdeskTicket(models.Model):
     #Fecha y hora limite
     date_limit = fields.Datetime(
         string='Limi Date & Time')    
-    #Asignado (Verdadero o Falso) solo lectura
-    assigned = fields.Boolean(
-        readonly=True,
-    )
+    
     #Acciones a realizar (Html)
 
     user_id = fields.Many2one(
@@ -67,6 +65,15 @@ class HelpdeskTicket(models.Model):
         #column2='tag_id',
         string='Tags')
 
+
+    #funcion que añada una accion
+    #def add_action(self):
+    #    self.ensure_one()
+    #    self.write{
+    #        'action_ids':(0 , 0, {'name': 'Nueva acción'})
+    #    }
+
+
     action_ids = fields.One2many(
         comodel_name='helpdesk.ticket.action',
         #relation='helpdesk_ticket_action_rel',
@@ -89,3 +96,67 @@ class HelpdeskTicket(models.Model):
     def set_all_actions_as_done(self):
         self.ensure_one()
         self.action_ids.set_done()
+
+    
+    #Asignado (Verdadero o Falso) solo lectura
+    assigned = fields.Boolean(
+        compute='_compute_assigned',
+        search='_search_assigned',
+        inverse='inverse_assigned',
+    )
+
+    #Hacer que el campo assigned sea calculado 
+    @api.depends('user_id')
+    def _compute_assigned(self):
+        for ticket in self:
+            ticket.assigned = bool(ticket.user_id)
+
+    #hacer que se pueda buscar con el atributo search
+    def _search_assigned(self, operator, value):
+        if operator == '=' and value == True:
+            raise UserError('No se puede buscar por asignado')
+        if operator == '==' and value == True:
+            operator = '!='
+        else:
+            operator = '=',
+        return [('user_id', operator, False)]
+
+
+
+    def inverse_assigned(self):
+        for ticket in self:
+            if not ticket.assigned:
+                ticket.user_id = False
+            else:
+                ticket.user_id = self.env.user
+
+    tag_name = fields.Char(Readonly = True)
+
+
+    #hacer un campo calculado que indique, dentro de un ticket, la cantidad de tiquets asociados al mismo ususario.
+    ticket_count = fields.Integer(
+        compute='_compute_ticket_count',
+    )
+
+    def _compute_ticket_count(self):
+        tickek_obj = self.env['helpdesk.ticket']
+        for ticket in self:
+            tickets = ticket.search([('user_id', '=', ticket.user_id.id)])
+            ticket.ticket_count = len(tickets)
+
+#    #crear un campo nombre de etiqueta, y hacer un botón que cree la nueva etiqueta con ese nombre y lo asocie al ticket.
+    def create_tag(self):
+        self.ensure_one()
+        self.write({'tag_ids': [(0, 0, {'name': self.tag_name})]})
+
+
+    def clear_tags(self):
+        self.ensure_one()
+        tag_ids = self.env['helpdesk.ticket.tag'].search([('name', '=', 'otra')])
+        self.tag_ids = [
+            Command.clear(),
+            Command.set(tag_ids.ids)
+        ]
+
+
+

@@ -57,7 +57,14 @@
               <field name="amount_time" widget='float_time'/>
             </group>
             <group>
+              <field name="ticket_count"/>
               <field name="user_id"/>
+              
+              <field name="tag_name"/>
+
+              <button string="Crear" name="create_tag" type="object" class="btn-primary"/>
+              <button string="Borrar" name="clear_tags" type="object" class="btn-primary"/>
+
               <field name="tag_ids" widget="many2many_tags"/>
             </group>
           </group>
