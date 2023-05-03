@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class HelpDeskTicket(models.Model):
     _name = 'helpdesk.ticket'
@@ -26,7 +27,11 @@ class HelpDeskTicket(models.Model):
     date_limit = fields.Datetime( string='Limit Date & Time')
 
     # Asignado (Verdadero o Falso)
-    assigned = fields.Boolean(readonly=True)
+    assigned = fields.Boolean(
+        compute='_compute_assigned',
+        search='_search_assigned',
+        inverse='_inverse_assigned',
+        )
 
     user_id = fields.Many2one(
         comodel_name='res.users', 
@@ -48,7 +53,7 @@ class HelpDeskTicket(models.Model):
         default='new',
     )
 
-    tag_ids = fields.Many2one(
+    tag_ids = fields.Many2many(
         comodel_name = 'helpdesk.ticket.tag',
         string = "Tag",
         )
@@ -59,19 +64,53 @@ class HelpDeskTicket(models.Model):
         string="Actions",
         )
     
+    color = fields.Integer('Color Index', default=0)
+
+    amount_time = fields.Float(
+        string='Amount of time',
+    )
+
+    user_name = fields.Char(
+        related='user_id.name',
+        string='User name',
+        )
+
+    @api.depends('user_id')
+    def _compute_assigned(self):
+        for record in self:
+            record.assigned = bool(record.user_id)
+
+    def _search_assigned(self, operator, value):
+        if operator not in ('=', '!=') or not isinstance(value, bool):
+            raise UserError(_("Operation not supported"))
+        if operator == '=' and value == True:
+            operator = '!='
+        else:
+            operator = '='    
+        return [('user_id', operator, value)]    
     
+    def _inverse_assigned(self):
+        for record in self:
+            if not record.assigned:
+                record.user_id = False
+            else:
+                record.user_id = self.env.user    
 
-    # def update_description(self):
-    #     self.write({'name': "OK"})
+    def update_description(self):
+        self.write({'name': "OK"})
 
-    # def update_all_description(self):
-    #     self.ensure_one()
-    #     all_tickets = self.env['helpdesk.ticket'].search([])
-    #     all_tickets.update_description()
+    def update_all_description(self):
+        self.ensure_one()
+        all_tickets = self.env['helpdesk.ticket'].search([])
+        all_tickets.update_description()
 
     def set_actions_as_done(self):
         self.ensure_one()
-        self.actions_ids.set_done()        
+        self.action_ids.set_done()  
+
+    def set_actions_as_todo(self):
+        self.ensure_one()
+        self.action_ids.set_todo()           
 
 
     
