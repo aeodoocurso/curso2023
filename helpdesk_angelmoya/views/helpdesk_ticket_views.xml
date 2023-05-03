@@ -19,9 +19,12 @@
                         <group>
                             <field name="date"/>
                             <field name="date_limit"/>
+                            <field name="amount_time" widget="float_time"/>                            
                         </group>
                         <group>
+                            <field name="assigned"/>
                             <field name="user_id"/>
+                            <field name="person_id"/>
                             <field name="tag_ids" widget="many2many_tags"/>
                         </group>
                     </group>
@@ -126,6 +129,54 @@
             </kanban>
         </field>
     </record>
+    
+    <!-- Vista pivot:
+        añadir vista pivot a la acción.
+        mostrar tiempo dedicado por usuario / mes -->
+
+    <record id="view_helpdesk_ticket_pivot" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.pivot</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <pivot string="Tickets">
+                <field name="user_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="amount_time" type="measure" widget="float_time"/>
+                <field name="color" invisible="1"/>
+                <field name="sequence" invisible="1"/>
+            </pivot>
+
+        </field>
+    </record>    
+    <!-- Vista graph:
+        añadir vista graph a la acción.
+        mostrar tiempo dedicado por usuario -->
+
+    <record id="view_helpdesk_ticket_graph" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.graph</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <graph string="Tickets" type="pie" >
+                <field name="user_id"/>
+                <field name="amount_time" type="measure" widget="float_time"/>
+            </graph>
+
+        </field>
+    </record>
+
+    <!-- Vista calendar:
+        por fecha mostrando cada usuarioa asignado. -->
+    
+    <record id="view_helpdesk_ticket_calendar" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.calendar</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <calendar string="Tickets" create="0" mode="month" date_start="date" color="user_id" event_limit="5">
+                <field name="name"/>
+                <field name="user_id" avatar_field="avatar_128"/>
+            </calendar>
+        </field>
+    </record>
 
     <!-- Añadir vista search:
     filtrar por nombre y por usuario asignado
@@ -154,7 +205,7 @@
         <field name="name">Heldpesk Tickets</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,tree,pivot,graph,calendar,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new ticket
