@@ -7,16 +7,16 @@
     "category": "Helpdesk",
     "website": "https://github.com/jterolc/curso2023",
     "author": "Jordi Terol, Odoo Community Association (OCA)",
-    "maintainers": ["jterolc"],
     "license": "AGPL-3",
     "installable": True,
     "depends": [
-        "base",
+        "base"
     ],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
         "views/helpdesk_ticket_views.xml",
+        "views/helpdesk_ticket_tag_views.xml",
         # "templates/assets.xml",
         # "views/report_name.xml",
         # "views/res_partner_view.xml",
