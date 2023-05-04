@@ -9,7 +9,7 @@ class HelpDeskTicket(models.Model):
     name = fields.Char(required=True, help="Título incidencia resumida.")
 
     # Secuencia
-    sequence = fields.Integer(default=10, help='Secuencia para')
+    sequence = fields.Integer(default=10, help='Secuencia')
 
     # Descripción
     description = fields.Text(
