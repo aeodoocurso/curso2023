@@ -19,27 +19,25 @@ class HelpDeskTicket(models.Model):
         Pasos:
             """
     )
-
+    
     # Fecha
     date = fields.Date()
-
+    
     # Fecha y hora limite
     date_limit = fields.Datetime( string='Limit Date & Time')
-
+    
     # Asignado (Verdadero o Falso)
     assigned = fields.Boolean(
-        compute='_compute_assigned',
-        search='_search_assigned',
-        inverse='_inverse_assigned',
+        readonly=True,
         )
-
+    
     user_id = fields.Many2one(
         comodel_name='res.users', 
         string='Assigned to')
-
+    
     # Acciones a realizar (Html)
     actions_todo = fields.Html()
-
+    
     # Añadir el campo estado
     state = fields.Selection(
         selection=[
@@ -52,12 +50,12 @@ class HelpDeskTicket(models.Model):
         ],
         default='new',
     )
-
+    
     tag_ids = fields.Many2many(
         comodel_name = 'helpdesk.ticket.tag',
         string = "Tag",
         )
-
+    
     action_ids = fields.One2many(
         comodel_name = 'helpdesk.ticket.action',
         inverse_name = 'ticket_id',
@@ -65,20 +63,66 @@ class HelpDeskTicket(models.Model):
         )
     
     color = fields.Integer('Color Index', default=0)
-
+    
     amount_time = fields.Float(
         string='Amount of time',
     )
-
+    
     user_name = fields.Char(
-        related='user_id.name',
         string='User name',
         )
+    
+    person_id = fields.Many2one(
+        comodel_name='res.partner',
+        domain=[('is_company', '=', False)],
+        )
+    
+    assigned = fields.Boolean(
+        compute='_compute_assigned',
+        search='_search_assigned',
+        inverse='_inverse_assigned',
+    )
 
     @api.depends('user_id')
     def _compute_assigned(self):
         for record in self:
             record.assigned = bool(record.user_id)
+
+    # hacer un campo calculado que indique, dentro de un ticket, la cantidad de tiquets asociados al mismo ususario.
+    tickets_count = fields.Integer(
+        compute='_compute_tickets_count',
+        string='Tickets count',
+    )
+
+    @api.depends('user_id')
+    def _compute_tickets_count(self):
+        ticket_obj = self.env['helpdesk.ticket']
+        for record in self:
+            tickets = ticket_obj.search([('user_id', '=', record.user_id.id)])
+            record.tickets_count = len(tickets)
+
+    # crear un campo nombre de etiqueta, y hacer un botón que cree la nueva etiqueta con ese nombre y lo asocie al ticket.
+    tag_name = fields.Char()
+
+    def create_tag(self):
+        self.ensure_one()
+        # self.write({'tag_ids': [(0,0,{'name': self.tag_name})]})
+        # self.write({'tag_ids': [Command.create({'name': self.tag_name})]})
+        self.tag_ids = [Command.create({'name': self.tag_name})]
+
+    def clear_tags(self):
+        self.ensure_one()
+
+        # PUNTO DE DEBUG -------
+        import pdb; pdb.set_trace()
+
+        tag_ids = self.env['helpdesk.ticket.tag'].search([('name', '=', 'otra')])
+        # self.write({'tag_ids': [
+        #     (5,0,0),
+        #     (6,0,tag_ids.ids)]})
+        self.tag_ids = [
+            Command.clear(),
+            Command.set(tag_ids.ids)]        
 
     def _search_assigned(self, operator, value):
         if operator not in ('=', '!=') or not isinstance(value, bool):

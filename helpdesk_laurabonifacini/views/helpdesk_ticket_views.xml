@@ -25,6 +25,18 @@
                             <group>
                                 <field name="assigned"/>
                                 <field name="user_id"/>
+                                <field name="tickets_count"/>
+                                <field name="person_id"/>
+                                <field name="tag_name"/> 
+
+                                <button string="Crear"
+                                    name="create_tag"
+                                    type="object" />
+
+                                <button string="Limpiar"
+                                    name="clear_tags"
+                                    type="object" />
+                                    
                                 <field name="tag_ids" widget="many2many_tags"/>
                             </group>
                         </group> 
@@ -36,10 +48,11 @@
                                 <field name="actions_todo"/>
                             </page>
                             <page string="Actions" name="actions">
-                            <button string="Set all as done" name="set_actions_as_done" type="object"/>
-                            <button string="Set all as to do" name="set_actions_as_todo" type="object"/>
-                                <field name="action_ids">
-                                    <tree string="Actions">
+                                <button string="Set all as done" name="set_actions_as_done" type="object"/>
+                                <field name="action_ids" context="{'tree_view_ref':'helpdesk_laurabonifacini.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_laurabonifacini.view_helpdesk_ticket_action_form_simple'}"/>
+                                <!--Vista embebida-->
+                                <!--field name="action_ids">
+                                    <tree string="Actions" editable="bottom">
                                         <field name="name"/>
                                         <field name="state"/>
                                     </tree>
@@ -51,7 +64,7 @@
                                             <field name="state" readonly="1"/>
                                         </group>
                                     </form>
-                                </field>
+                                </field-->
                             </page>
                         </notebook>   
                     </div>    
