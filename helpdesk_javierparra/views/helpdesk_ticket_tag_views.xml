@@ -22,6 +22,7 @@
         <sheet>
           <group>
             <field name="name"/>
+            <field name="ticket_ids"/>
           </group>
         </sheet>
       </form>
@@ -40,6 +41,6 @@
         </field>
     </record>
 
-    <menuitem id="helpdesk_menu_config" name="Config" sequence="10" parent="helpdesk_menu" />
-    <menuitem id="helpdesk_ticket_tag_open" name="Tags" parent='helpdesk_menu_config' sequence="10"  action="helpdesk_ticket_tag_action"/>
+    <menuitem id="helpdesk_menu_config" name="Config" sequence="20" parent="helpdesk_menu" />
+    <menuitem id="helpdesk_ticket_tag_open" name="Tags" parent='helpdesk_menu_config' sequence="20"  action="helpdesk_ticket_tag_action"/>
 </odoo>

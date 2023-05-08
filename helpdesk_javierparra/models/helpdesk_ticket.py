@@ -60,9 +60,9 @@ class HelpdeskTicket(models.Model):
 
     tag_ids = fields.Many2many(
         comodel_name='helpdesk.ticket.tag',
-        #relation='helpdesk_ticket_tag_rel',
-        #column1='ticket_id',
-        #column2='tag_id',
+        relation='helpdesk_ticket_tag_rel',
+        column1='ticket_id',
+        column2='tag_id',
         string='Tags')
 
 
@@ -153,6 +153,8 @@ class HelpdeskTicket(models.Model):
     def clear_tags(self):
         self.ensure_one()
         tag_ids = self.env['helpdesk.ticket.tag'].search([('name', '=', 'otra')])
+        #import pdb; pdb.set_trace()
+        #import wdb; wdb.set_trace()
         self.tag_ids = [
             Command.clear(),
             Command.set(tag_ids.ids)
