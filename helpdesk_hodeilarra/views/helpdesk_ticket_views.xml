@@ -14,6 +14,16 @@
         </field>
     </record>
 
+     <record id="helpdesk_ticket_related_action" model="ir.actions.act_window">
+        <field name="name">Action</field>
+       
+        <field name="res_model">helpdesk.ticket.action</field>
+        <field name="view_mode">tree,form</field>
+
+        <field name="domain"> [('ticket_id','=', active_id)] </field>
+        <field name="context"> {'default_ticket_id': active_id} </field>
+    </record>
+
 
     <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
         <field name="name">view.helpdesk.ticket.tree</field>
@@ -38,6 +48,7 @@
             <form>
                 <header>
                     <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved,canceled"/>
+                    <button name="get_assigned" type="object" string="Asignar a mí" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'new')]}"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -82,8 +93,10 @@
                             <field name="actions_todo"/>
                         </page>
                         <page string="Actions" name="actions">
+                      
                             <!-- <label for="actions_todo" string="To Do"/> -->
                             <button string="Set all as done" name="set_actions_as_done" type="object"/>
+                             <button string="open related actions" name="%(helpdesk_hodeilarra.helpdesk_ticket_related_action)d" type="action"/>
                             <field name="action_ids">
                                 <tree string="Actions">
                                     <field name="name"/>
@@ -226,6 +239,14 @@
 
         </field>
     </record>
+
+  <!--  <record id="view_helpdesk_tag_action" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.tags</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+
+        </field>
+    </record>--> 
 
     <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
 

@@ -1,28 +1,44 @@
 from odoo import fields, models, api
 from odoo.exceptions import UserError
+from datetime import timedelta
 
 class Helpdesk(models.Model):
     _name = 'helpdesk.ticket'
     _description = 'Helpdesk Ticket'
 
     #nombre
-    nombre              = fields.Char(required=True)
+    nombre = fields.Char(required=True)
 
     #descripcion
-    description         = fields.Text(help="Describe detalladamente la incidencia y cómo replicarla.",default="Esto es un campo por defecto.")
+    description = fields.Text(help="Describe detalladamente la incidencia y cómo replicarla.",default="Esto es un campo por defecto.")
 
     #fecha
-    date                = fields.Date()
+    date = fields.Date(default=fields.Date.context_today)
+
+    @api.onchange('date')
+    def _date_onchange(self):
+        if self.date:
+            self.date_limit = self.date + timedelta(days=1)
+        else:
+            self.date_limit = False
+
     
     #fecha y hora limite
-    date_limit          = fields.Datetime(string="Limit Date & Time")
+    date_limit = fields.Datetime(string="Limit Date & Time", compute="_date_onchange")
 
     
 
-    user_id             = fields.Many2one(comodel_name='res.users', string='Assigned to')
+    user_id = fields.Many2one(comodel_name='res.users', string='Assigned to')
+
+    
+    def get_assigned(self):
+        self.assigned = True
+        self.user_id = self.env.user.id
+        self.state = "assigned"
+
 
     #Acciones a realizar
-    actions_todo        = fields.Html()
+    actions_todo = fields.Html()
 
     #estado
     state = fields.Selection(
@@ -39,6 +55,14 @@ class Helpdesk(models.Model):
     color = fields.Integer('Color Index', default=0)
 
     amount_time = fields.Float(string="Amount of time")
+
+    #Añadimos restricción para hacer que no pueda ser menor que 0
+
+    @api.constrains('amount_time')
+    def _check_amount_time(self):
+        for record in self:
+            if record.amount_time < 0:
+                raise UserError("Time can not be negative.")
     
     #secuencia
     sequence = fields.Integer(default=10, help="Secuencia para el orden")
@@ -55,7 +79,9 @@ class Helpdesk(models.Model):
     
 
 
-    tag_ids = fields.Many2many(comodel_name='helpdesk.ticket.tag',string='Tags')
+    tag_ids = fields.Many2many(comodel_name='helpdesk.ticket.tag',string='Tags',relation='helpdesk_ticket_tag_rel',
+        column1='ticket_id',
+        column2='tag_id')
     action_ids = fields.One2many(
         comodel_name='helpdesk.ticket.action',
         inverse_name='ticket_id',
@@ -69,6 +95,10 @@ class Helpdesk(models.Model):
     
     #Asignado
     assigned  = fields.Boolean(compute="_compute_assigned", search='_search_assigned', inverse='_inverse_assigned')
+
+    def remove_unassigned_tickets(self):
+          unused_tags = self.search([('assigned', '=', False)])
+          unused_tags.unlink()
 
     @api.depends('user_id')
     def _compute_assigned(self):
@@ -110,10 +140,12 @@ class Helpdesk(models.Model):
         self.write({
                 'tag_ids': [(0,0,{'nombre':self.tag_name})]
             })
+        
 
     def clear_tags(self):
         self.ensure_one()
         tag_ids = self.env['helpdesk.ticket.tag'].search([('nombre','=','otra')])
+        #import pdb; pdb.set_trace()
         self.write({'tag_ids':[
             (5,0,0),
             (6,0,tag_ids.ids)
