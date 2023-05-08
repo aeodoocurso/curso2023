@@ -88,6 +88,11 @@ class HelpdeskTicket(models.Model):
     color = fields.Integer('Color Index', default=0)
     amount_time = fields.Float()
 
+    person_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Person',
+    )
+
     is_assigned = fields.Boolean(
         compute='_compute_assigned',
         search='_search_assigned',
@@ -133,6 +138,8 @@ class HelpdeskTicket(models.Model):
     tag_name = fields.Char()
 
     def create_tag(self):
+        # import pdb; pdb.set_trace()
+        import wdb; wdb.set_trace()
         self.ensure_one()
         self.tag_ids = [Command.create({'name': self.tag_name})]
 
