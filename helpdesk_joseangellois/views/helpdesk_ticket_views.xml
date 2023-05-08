@@ -19,10 +19,17 @@
                         <group>                            
                             <field name="date" optional="show" />
                             <field name="date_limit" optional="hide" />
+                            <field name="amount_time" widget="float_time"/>
                         </group>
                         <group>
-                            <field name="user_id" />
-                            <field name="tag_ids" widget="many2many_tags"/>                        
+                            <field name="assigned"/>
+                            <field name="user_id"/>
+                            <field name="tickets_count"/>
+                            <field name="person_id"/>
+                            <field name="tag_name"/>                            
+                            <button string="Crear" name="create_tag" type="object" />
+                            <button string="Limpiar" name="clear_tags" type="object" />
+                            <field name="tag_ids" widget="many2many_tags"/>                       
                         </group>
                     </group>
                     <notebook>
@@ -68,6 +75,7 @@
                 <field name="state" />
                 <field name="date" optional="show" />
                 <field name="date_limit" optional="hide" />
+                <field name="state"/>
                 <button string="Update" name="update_field" type="object" class="btn-primary"/>
                 <!-- <button string="Update ALL" name="update_all_field" type="object" class="btn-primary"/> -->
             </tree>
@@ -121,6 +129,53 @@
         </field>
     </record>
      -->
+
+     
+    <!-- Vista pivot:
+        añadir vista pivot a la acción.
+        mostrar tiempo dedicado por usuario / mes -->
+    <record id="view_helpdesk_ticket_pivot" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.pivot</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <pivot string="Tickets">
+                <field name="user_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="amount_time" type="measure" widget="float_time"/>
+                <field name="color" invisible="1"/>
+                <field name="sequence" invisible="1"/>
+            </pivot>
+
+        </field>
+    </record>  
+
+    <!-- Vista graph:
+        añadir vista graph a la acción.
+        mostrar tiempo dedicado por usuario -->
+
+    <record id="view_helpdesk_ticket_graph" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.graph</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <graph string="Tickets" type="pie" >
+                <field name="user_id"/>
+                <field name="amount_time" type="measure" widget="float_time"/>
+            </graph>
+
+        </field>
+    </record>
+
+    <record id="view_helpdesk_ticket_calendar" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.calendar</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <calendar string="Tickets" create="0" mode="month" date_start="date" color="user_id" event_limit="5">
+                <field name="name"/>
+                <field name="user_id" avatar_field="avatar_128"/>
+            </calendar>
+        </field>
+    </record>
+
     <record id="view_helpdesk_ticket_search" model="ir.ui.view">
         <field name="name">view.helpdesk_ticket.search</field>
         <field name="model">helpdesk.ticket</field>
