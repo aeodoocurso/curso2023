@@ -71,9 +71,9 @@ class HelpdeskTicket(models.Model):
     # Relación para poder poner muchos tags sobre muchos ticket
     tag_ids = fields.Many2many(
         comodel_name='helpdesk.ticket.tag',
-        # relation='helpdesk_ticket_tag_rel',
-        # column1='ticket_id',
-        # column2='tag_id',
+        relation='helpdesk_ticket_tag_rel',
+        column1='ticket_id',
+        column2='tag_id',
         string='Tags')
 
     # Relación para poder poner muchos actios sobre un ticket
