@@ -49,6 +49,10 @@
                             </page>
                             <page string="Actions" name="actions">
                                 <button string="Set all as done" name="set_actions_as_done" type="object"/>
+                                
+                                <button string="Open Related Action (type=action)" name="%(helpdesk_laurabonifacini.helpdesk_ticket_action_related)d" type="action"/>
+                                <!--button string="Open Related Action (type=object)" name="%(helpdesk_laurabonifacini.helpdesk_ticket_action_related)d" type="object"/-->
+
                                 <field name="action_ids" context="{'tree_view_ref':'helpdesk_laurabonifacini.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_laurabonifacini.view_helpdesk_ticket_action_form_simple'}"/>
                                 <!--Vista embebida-->
                                 <!--field name="action_ids">

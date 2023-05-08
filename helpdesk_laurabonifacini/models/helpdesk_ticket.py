@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from datetime import timedelta
 
 class HelpDeskTicket(models.Model):
     _name = 'helpdesk.ticket'
@@ -25,7 +26,14 @@ class HelpDeskTicket(models.Model):
     
     # Fecha y hora limite
     date_limit = fields.Datetime( string='Limit Date & Time')
-    
+
+    @api.onchange('date')
+    def _onchange_date(self):
+        if self.date:
+            self.date_limit = self.date + timedelta(days=1)
+        else:
+            self.date_limit = False    
+
     # Asignado (Verdadero o Falso)
     assigned = fields.Boolean(
         readonly=True,
@@ -67,6 +75,12 @@ class HelpDeskTicket(models.Model):
     amount_time = fields.Float(
         string='Amount of time',
     )
+
+    @api.constrains('amount_time')
+    def _amount_time(self):
+       for task in self:
+           if task.amount_time < 0:
+               raise ValidationError(_("The amount of time can not be negative."))
     
     user_name = fields.Char(
         string='User name',
