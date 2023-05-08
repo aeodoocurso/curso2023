@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 class HelpdeskTicketTag(models.Model):
     _name = "helpdesk.ticket.tag"
@@ -16,3 +16,12 @@ class HelpdeskTicketTag(models.Model):
         column1='tag_id',
         column2='ticket_id',
         string='Tickets')
+    
+    # Función para eliminar las tags que no estén asignadas a ningún ticket - Se utiliza en el cron
+    @api.model
+    def _clean_tags_cron(self):
+        tags = self.search([('ticket_ids', '=', False)])
+        tags._clean_tags()
+
+    def _clean_tags(self):
+        self.unlink()

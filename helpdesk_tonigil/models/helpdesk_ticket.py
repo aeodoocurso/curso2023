@@ -29,8 +29,15 @@ class HelpdeskTicket(models.Model):
         """
     )
 
+    # Si la función sólo va a tener una línea, como este caso, se puede poner la línea abajo y no llamar función
+    @api.model
+    def _get_default_date(self):
+        return fields.Date.today()
+
     # Fecha
-    date = fields.Date()
+    date = fields.Date(
+        default=_get_default_date,
+    )
 
     # Fecha y hora limite
     date_limit = fields.Datetime()
@@ -44,11 +51,14 @@ class HelpdeskTicket(models.Model):
             else:
                 record.date_limit = False
     
-    # Otra forma sin onchange, con api.depends
-
+    @api.model
+    def _get_default_user(self):
+        return self.env.user
+    
     user_id = fields.Many2one(
         comodel_name='res.users',
-        string='Assigned to'
+        string='Assigned to',
+        default=_get_default_user
     )
 
     # Acciones a realizar (Html)
@@ -85,7 +95,7 @@ class HelpdeskTicket(models.Model):
         column2='tag_id',
         string='Tags')
 
-    # Relación para poder poner muchos actios sobre un ticket
+    # Relación para poder poner muchos actions sobre un ticket
     action_ids = fields.One2many(
         comodel_name='helpdesk.ticket.action',
         inverse_name='ticket_id',
@@ -102,11 +112,12 @@ class HelpdeskTicket(models.Model):
         string='Amount of time'
     )
 
-    # Añadir una restricción para hacer que el campo Time no sea menor que 0
-    #@api.constrains('amount_time')
-    #def _check_amount(self):
-    #    for record in self:
-    #        if record.amount_time
+    # Añadir una restricción para hacer que el campo time no sea menor que 0
+    @api.constrains('amount_time')
+    def _check_amount(self):
+        for record in self:
+            if record.amount_time < 0:
+                raise UserError(_("The amount of time can't be negative"))
 
     person_id = fields.Many2one(
         comodel_name='res.partner',
@@ -156,9 +167,22 @@ class HelpdeskTicket(models.Model):
 
     def create_tag(self):
         self.ensure_one()
-        self.tag_ids = [Command.create({'name':self.tag_name})
-        ]
-    
+        #self.tag_ids = [Command.create({'name':self.tag_name})]
+
+        action = {
+            'name' : "Helpdesk Ticket Tags",
+            'type': 'ir.actions.act_window',
+            'res_model' : 'helpdesk.ticket.tag',
+        }
+        action['context'] = {
+            'default_name': self.tag_name,
+            'default_ticket_ids': self.ids,
+        }
+        action['view_mode'] = 'form'
+        #action['binding_view_types'] = 'form'
+        action['target'] = 'form'
+        return action
+       
     def clear_tags(self):
         self.ensure_one()
         tag_ids = self.env['helpdesk.ticket.tag'].search([('name', '=', 'otra')])
@@ -166,3 +190,19 @@ class HelpdeskTicket(models.Model):
             Command.clear(),
             Command.set(tag_ids.ids)
         ]
+
+    def get_related_actions(self):
+        self.ensure_one()
+        # action = self.env["ir.actions.actions"]._for_xml_id("helpdesk_angelmoya.helpdesk_ticket_action_related_action")
+        # return action
+        action = self.env["ir.actions.actions"]._for_xml_id("helpdesk_angelmoya.helpdesk_ticket_action_action")
+        # <field name="domain">[('ticket_id','=',active_id)]</field>
+        action['domain'] = [('ticket_id','=',self.id)]
+        # <field name="context">{'default_ticket_id': active_id}</field>
+        action['context'] = {'default_ticket_id': self.id}
+        return action
+    
+    def get_assigned(self):
+        self.ensure_one()
+        self.state = 'assigned'
+        self.user_id = self.env.user

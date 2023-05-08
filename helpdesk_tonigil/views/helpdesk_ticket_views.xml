@@ -9,6 +9,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button string="Assign to me"
+                    name="get_assigned"
+                    type="object"
+                    states="new"
+                    groups="helpdesk_tonigil.res_groups_helpdesk_manager"/> <!-- El botón sólo se verá cuando el estado sea 'new' y el grupo de usuarios 'manager' -->
                     <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
                 </header>
                 <sheet>
@@ -195,18 +200,14 @@
     </record>
 
 
-    <!-- Creamos la acción -->
+    <!-- Creamos la acción para el menú -->
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Helpdesk Tickets</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">helpdesk.ticket</field>
         <field name="view_mode">kanban,tree,pivot,graph,calendar,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Crea un ticket nuevo
-            </p>
-        </field>
     </record>
+
 
     <!-- Creamos el menú -->
     <!-- Este aparece en el menú principal -->
