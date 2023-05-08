@@ -1,5 +1,6 @@
 from odoo import fields, models, Command, api, _
 from odoo.exceptions import UserError
+from datetime import timedelta
 
 class HelpdeskTicket(models.Model):
     _name = "helpdesk.ticket"
@@ -34,8 +35,16 @@ class HelpdeskTicket(models.Model):
     # Fecha y hora limite
     date_limit = fields.Datetime()
 
-    # Asignado (Verdadero o Falso)
-    #assigned = fields.Boolean(readonly=True,)
+    # Añadir un onchange para que al indicar la fecha, ponga como fecha de vencimiento, un día más
+    @api.onchange('date')
+    def _onchange_date(self):
+        for record in self:
+            if record.date:
+                record.date_limit = record.date + timedelta(days=1)
+            else:
+                record.date_limit = False
+    
+    # Otra forma sin onchange, con api.depends
 
     user_id = fields.Many2one(
         comodel_name='res.users',
@@ -92,6 +101,12 @@ class HelpdeskTicket(models.Model):
     amount_time = fields.Float(
         string='Amount of time'
     )
+
+    # Añadir una restricción para hacer que el campo Time no sea menor que 0
+    #@api.constrains('amount_time')
+    #def _check_amount(self):
+    #    for record in self:
+    #        if record.amount_time
 
     person_id = fields.Many2one(
         comodel_name='res.partner',
