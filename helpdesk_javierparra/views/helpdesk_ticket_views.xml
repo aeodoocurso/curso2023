@@ -57,9 +57,11 @@
               <field name="amount_time" widget='float_time'/>
             </group>
             <group>
-              <field name="ticket_count"/>
+              <field name="assigned"/>
               <field name="user_id"/>
-              
+              <field name="ticket_count"/>
+              <field name="person_id" options="{'no_create':'True'}"/>
+              <field name="person_id" options="{'no_quick_create':'True', 'no_open':'True'}"/>
               <field name="tag_name"/>
 
               <button string="Crear" name="create_tag" type="object" class="btn-primary"/>
@@ -78,23 +80,25 @@
             </page>
             <page string="Actions" name='actions'>
             <button string="Set all as done" name="set_all_actions_as_done" type="object" class="btn-primary"/>
+              <field name="action_ids" context="{'default_state':'done','tree_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_form_simple'}" />
+
+
+            <!--
               <field name="action_ids">
               <tree string="Actions">
                 <field name="name"/>
                 <field name="state"/>
               </tree>
                 <form>
-
                   <button string="set done" name="set_done" type="object" class="btn-primary"/>
                   <button string="set todo" name="set_todo" type="object" class="btn-primary"/>
-                
                   <group>
                     <field name="name"/>
                     <field name="state"  />
                   </group>
                 </form>
               </field> 
-
+              -->
             </page>
             </notebook>
         </sheet>

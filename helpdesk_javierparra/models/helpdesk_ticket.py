@@ -56,6 +56,10 @@ class HelpdeskTicket(models.Model):
 
     color = fields.Integer('Color Index', default=0)
 
+    person_id = fields.Many2one(
+        comodel_name='res.partner',
+        domain=[('is_company', '=', False)],)
+
     amount_time = fields.Float(string='Amount of time')
 
     tag_ids = fields.Many2many(
