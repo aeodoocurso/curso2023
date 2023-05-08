@@ -1,5 +1,5 @@
-from odoo import models, api, _, fields, Command
-
+from odoo import api, Command, fields, models, _
+from odoo.exceptions import UserError
 
 class HelpdeskTicket(models.Model):
     _name="helpdesk.ticket"
@@ -62,6 +62,8 @@ class HelpdeskTicket(models.Model):
         inverse='_inverse_assigned',
     )
 
+    tag_name = fields.Char()
+
     @api.depends('user_id')
     def _compute_assigned(self):
         for record in self:
@@ -95,8 +97,6 @@ class HelpdeskTicket(models.Model):
             tickets = ticket_obj.search([('user_id', '=', record.user_id.id)])
             record.tickets_count = len(tickets)
 
-    tag_name = fields.Char()
-
     def create_tag(self):
         self.ensure_one()
         self.tag_ids = [Command.create({'name': self.tag_name})]
@@ -104,9 +104,7 @@ class HelpdeskTicket(models.Model):
     def clear_tags(self):
         self.ensure_one()
         tag_ids = self.env['helpdesk.ticket.tag'].search([('name', '=', 'otra')])
-        # self.write({'tag_ids': [
-        #     (5,0,0),
-        #     (6,0,tag_ids.ids)]})
+
         self.tag_ids = [
             Command.clear(),
             Command.set(tag_ids.ids)]

@@ -38,7 +38,7 @@
         </field>
     </record>
     
-    <menuitem id="helpdesk_menu_config" name="Config" sequence="10" parent="helpdesk_menu"/>
+    <menuitem id="helpdesk_menu_config" name="Config" sequence="10" parent="menu_helpdesk_root"/>
     <menuitem id="helpdesk_ticket_tag_open" name="Tags" sequence="10" parent="helpdesk_menu_config" action="helpdesk_ticket_tag_action"/>
 
 </odoo>
