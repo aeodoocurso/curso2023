@@ -8,6 +8,11 @@
             <form>
                 <!--Header con status bar-->
                 <header>
+                    <button string="Assign to me"
+                    name="get_assigned"
+                    type="object"
+                    states='new'
+                    groups='helpdesk_laurabonifacini.model_helpdesk_ticket_action,helpdesk_laurabonifacini.res_groups_helpdesk_manager'/>
                     <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
                 </header>
                 

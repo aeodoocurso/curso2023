@@ -21,9 +21,15 @@ class HelpDeskTicket(models.Model):
             """
     )
     
+    @api.model
+    def _get_default_date(self):
+        return fields.Date.today()
+
     # Fecha
-    date = fields.Date()
-    
+    date = fields.Date(
+        default=_get_default_date,
+    )
+
     # Fecha y hora limite
     date_limit = fields.Datetime( string='Limit Date & Time')
 
@@ -95,6 +101,8 @@ class HelpDeskTicket(models.Model):
         compute='_compute_assigned',
         search='_search_assigned',
         inverse='_inverse_assigned',
+        #active=True, # permite archivar/desarchivar
+        copy=False, # al duplicar no copiará el contentido de este campo/ los valores o2m por defecto no se copian hay que ponerle el copy=True
     )
 
     @api.depends('user_id')
@@ -118,11 +126,30 @@ class HelpDeskTicket(models.Model):
     # crear un campo nombre de etiqueta, y hacer un botón que cree la nueva etiqueta con ese nombre y lo asocie al ticket.
     tag_name = fields.Char()
 
+                      
+
     def create_tag(self):
         self.ensure_one()
         # self.write({'tag_ids': [(0,0,{'name': self.tag_name})]})
         # self.write({'tag_ids': [Command.create({'name': self.tag_name})]})
         self.tag_ids = [Command.create({'name': self.tag_name})]
+        # action = self.env["ir.actions.actions"]._for_xml_id("helpdesk_laurabonifacini.helpdesk_ticket_tag_action")
+        
+        action = {
+            'name': _('Helpdesk Tickets Tags'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'helpdesk.ticket.tag',
+        }
+        action['context'] = {
+            'default_name': self.tag_name,
+            'default_ticket_id': self.id,
+
+        }
+        action['view_mode'] = 'form'
+        action['binding_view_types'] = 'form'
+        action['target'] = 'new'
+        return action
+
 
     def clear_tags(self):
         self.ensure_one()
@@ -168,7 +195,16 @@ class HelpDeskTicket(models.Model):
 
     def set_actions_as_todo(self):
         self.ensure_one()
-        self.action_ids.set_todo()           
+        self.action_ids.set_todo() 
+
+    def get_assigned(self):
+        self.ensure_one()
+        self.state = 'assigned'  
+        self.user_id = self.env.user 
+
+        
+
+
 
 
     
