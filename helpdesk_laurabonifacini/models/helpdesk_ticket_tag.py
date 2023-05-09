@@ -15,8 +15,12 @@ class HelpdeskTicketTag(models.Model):
     )
 
     @api.model
+    def _clean_tags_cron(self):
+        tags = self.search([('ticket_ids', '=', False)])
+        tags._clean_tags()
+
     def _clean_tags(self):
-        self.search([('ticket_ids', '=', False)]).unlink()
+        self.unlink()
 
     
      
