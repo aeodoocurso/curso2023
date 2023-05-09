@@ -36,6 +36,12 @@
   
         <!--crear un header con el status bar-->
         <header>
+            <button name="set_assigned" 
+            string="Assign To Me" 
+            type="object" states="new"
+            groups='helpdesk_javierparra.res_groups_helpdesk_manager'
+            />
+
             <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
         </header>
         <sheet>
@@ -79,7 +85,13 @@
               <field name="actions_todo"/>
             </page>
             <page string="Actions" name='actions'>
-            <button string="Set all as done" name="set_all_actions_as_done" type="object" class="btn-primary"/>
+              <button string="Set all as done" name="set_all_actions_as_done" type="object" class="btn-primary"/>
+
+              <button string="Open related Actions" name="%(helpdesk_javierparra.helpdesk_ticket_actions_related_action)d" type="action"/>
+              <button string="Open related Actions" name="get_related_actions" type="object"/>
+            
+
+            
               <field name="action_ids" context="{'default_state':'done','tree_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_form_simple'}" />
 
 
@@ -213,9 +225,7 @@ extra: añadir un field color, para cambiar el color de la tarjeta, ver como est
     <calendar string="Tickets" mode='month' create="0" date_start="date" color="user_id" event_limit="5">
         <field name="name"/>
         <field name="user_id" avatar_field="avatar_128"/>
-        
     </calendar>
-
     </field>
   </record>
 
