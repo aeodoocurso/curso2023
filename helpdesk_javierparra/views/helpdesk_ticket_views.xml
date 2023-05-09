@@ -25,37 +25,25 @@
     </field>
   </record>
 
-  <!-- vista de tipo form para el modelo helpdesk_ticket en el  header con el status bar-->
-  
-  
    <record id="view_helpdesk_ticket_form" model="ir.ui.view">
     <field name="name">view.helpdesk_ticket.form</field>
     <field name="model">helpdesk.ticket</field>
-    <field name= "arch" type='xml' >
+    <field name= "arch" type='xml'>
       <form string="Tickets">
-  
-        <!--crear un header con el status bar-->
         <header>
             <button name="set_assigned" 
             string="Assign To Me" 
             type="object" states="new"
-            groups='helpdesk_javierparra.res_groups_helpdesk_manager'
-            />
-
+            groups='helpdesk_javierparra.res_groups_helpdesk_manager'/>
             <field name="state" widget="statusbar" statusbar_visible="new,assigned,in_process,pending,resolved"/>
         </header>
+        
         <sheet>
-          <!--TITULO DE LA PAGINA-->
           <div class="oe_title">
             <h1>
               <field name="name"/>
             </h1>
           </div>
-        <!--
-          dos columnas:
-        - fecha, fecha límite
-        - asignado, tiempo dedicado
-        -->
           <group>
             <group>
               <field name="date"/>
@@ -72,10 +60,10 @@
 
               <button string="Crear" name="create_tag" type="object" class="btn-primary"/>
               <button string="Borrar" name="clear_tags" type="object" class="btn-primary"/>
-
               <field name="tag_ids" widget="many2many_tags"/>
             </group>
           </group>
+  
           <notebook>
             <page string="Description" name='description'>
               <button string="Update Description" name="update_description" type="object" class="btn-primary"/>
@@ -84,41 +72,23 @@
             <page string="To Do" name='to_do'>
               <field name="actions_todo"/>
             </page>
+            
             <page string="Actions" name='actions'>
               <button string="Set all as done" name="set_all_actions_as_done" type="object" class="btn-primary"/>
-
-              <button string="Open related Actions" name="%(helpdesk_javierparra.helpdesk_ticket_actions_related_action)d" type="action"/>
-              <button string="Open related Actions" name="get_related_actions" type="object"/>
-            
-
-            
-              <field name="action_ids" context="{'default_state':'done','tree_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_form_simple'}" />
-
-
-            <!--
-              <field name="action_ids">
-              <tree string="Actions">
-                <field name="name"/>
-                <field name="state"/>
-              </tree>
-                <form>
-                  <button string="set done" name="set_done" type="object" class="btn-primary"/>
-                  <button string="set todo" name="set_todo" type="object" class="btn-primary"/>
-                  <group>
-                    <field name="name"/>
-                    <field name="state"  />
-                  </group>
-                </form>
-              </field> 
+              <!--
+              <button string="OpenRelated" name="%(helpdesk_javierparra.helpdesk_ticket_actions_related_action)d" type="action"/>
               -->
+              <button string="Open related Actions" name="get_related_actions" type="object"/>
+              <field name="action_ids" context="{'default_state':'done','tree_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_form_simple'}" />
             </page>
+
             </notebook>
+
+            
         </sheet>
       </form>
     </field>
-  </record>
-  
-
+  </record>  
 
   <!--VISTA SEARCH-->
  
