@@ -1,0 +1,288 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* helpdesk_tonigil
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-26 17:33+0000\n"
+"PO-Revision-Date: 2023-04-26 17:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__action_ids
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_form
+msgid "Actions"
+msgstr "Acciones"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__actions_todo
+msgid "Actions Todo"
+msgstr "Acciones por hacer"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields.selection,name:helpdesk_tonigil.selection__helpdesk_ticket__state__assigned
+msgid "Asigned"
+msgstr "Asignado"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__user_id
+msgid "Assigned to"
+msgstr "Asignado a"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields.selection,name:helpdesk_tonigil.selection__helpdesk_ticket__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: helpdesk_tonigil
+#: model:ir.ui.menu,name:helpdesk_tonigil.helpdesk_menu_config
+msgid "Config"
+msgstr ""
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.actions.act_window,help:helpdesk_tonigil.helpdesk_ticket_action
+msgid "Crea un ticket nuevo"
+msgstr ""
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.actions.act_window,help:helpdesk_tonigil.helpdesk_ticket_tag_action
+msgid "Create a new ticket tag"
+msgstr "Crea una nueva etiqueta"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__create_uid
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__create_uid
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_tag__create_uid
+msgid "Created by"
+msgstr "Usuario creación"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__create_date
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__create_date
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_tag__create_date
+msgid "Created on"
+msgstr "Fecha creación"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__date_limit
+msgid "Date Limit"
+msgstr "Fecha Límite"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__description
+msgid "Descripción"
+msgstr ""
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__display_name
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__display_name
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_tag__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields.selection,name:helpdesk_tonigil.selection__helpdesk_ticket_action__state__done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,help:helpdesk_tonigil.field_helpdesk_ticket__description
+msgid ""
+"Escribe detalladamente la incidencia. Cuanta más información aportes, más "
+"fácil será ayudarte."
+msgstr ""
+
+#. module: helpdesk_tonigil
+#: model:ir.actions.act_window,name:helpdesk_tonigil.helpdesk_ticket_tag_action
+msgid "Heldpesk Tickets Tags"
+msgstr "Etiquetas"
+
+#. module: helpdesk_tonigil
+#: model:ir.module.category,name:helpdesk_tonigil.ir_module_category_helpdesk
+#: model:ir.ui.menu,name:helpdesk_tonigil.helpdesk_menu
+msgid "Helpdesk"
+msgstr ""
+
+#. module: helpdesk_tonigil
+#: model:ir.model,name:helpdesk_tonigil.model_helpdesk_ticket
+msgid "Helpdesk Ticket"
+msgstr "Ticket"
+
+#. module: helpdesk_tonigil
+#: model:ir.model,name:helpdesk_tonigil.model_helpdesk_ticket_action
+msgid "Helpdesk Ticket Action"
+msgstr "Acción"
+
+#. module: helpdesk_tonigil
+#: model:ir.model,name:helpdesk_tonigil.model_helpdesk_ticket_tag
+msgid "Helpdesk Ticket Tag"
+msgstr "Etiquetas"
+
+#. module: helpdesk_tonigil
+#: model:ir.actions.act_window,name:helpdesk_tonigil.helpdesk_ticket_action
+msgid "Helpdesk Tickets"
+msgstr "Tickets"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__id
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__id
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_tag__id
+msgid "ID"
+msgstr "ID"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields.selection,name:helpdesk_tonigil.selection__helpdesk_ticket__state__in_process
+msgid "In Process"
+msgstr "En Proceso"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket____last_update
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action____last_update
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_tag____last_update
+msgid "Last Modified on"
+msgstr "Fecha última modificación"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__write_uid
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__write_uid
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_tag__write_uid
+msgid "Last Updated by"
+msgstr "Usuario última actualización"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__write_date
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__write_date
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_tag__write_date
+msgid "Last Updated on"
+msgstr "Fecha última actualización"
+
+#. module: helpdesk_tonigil
+#: model:res.groups,name:helpdesk_tonigil.res_groups_helpdesk_manager
+msgid "Manager"
+msgstr "Administrador"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__name
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_tag__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields.selection,name:helpdesk_tonigil.selection__helpdesk_ticket__state__new
+msgid "New"
+msgstr "Nuevo"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__name
+msgid "Nombre"
+msgstr "Nombre"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields.selection,name:helpdesk_tonigil.selection__helpdesk_ticket__state__pending
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields.selection,name:helpdesk_tonigil.selection__helpdesk_ticket__state__resolved
+msgid "Resolved"
+msgstr "Resuelto"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,help:helpdesk_tonigil.field_helpdesk_ticket__name
+msgid "Resume en pocas palabras, un título para la incidencia"
+msgstr "Resume en pocas palabras, un tíulo para la incidencia"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_form
+msgid "Set all as done"
+msgstr "Marcar todos hechos"
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_form
+msgid "Set done"
+msgstr "Marcar hecho"
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_form
+msgid "Set todo"
+msgstr "Marcar por hacer"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__state
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__state
+msgid "State"
+msgstr "Estado"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket__tag_ids
+#: model:ir.ui.menu,name:helpdesk_tonigil.helpdesk_ticket_tag_open
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.view_helpdesk_ticket_tag_tree
+msgid "Ticket Tags"
+msgstr "Etiquetas"
+
+#. module: helpdesk_tonigil
+#: model:ir.ui.menu,name:helpdesk_tonigil.helpdesk_ticket_open
+msgid "Tickets"
+msgstr "Tickets"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields.selection,name:helpdesk_tonigil.selection__helpdesk_ticket_action__state__todo
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_form
+msgid "To Do"
+msgstr "Por hacer"
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_tree
+msgid "Update all description"
+msgstr "Actualizar todas las descripciones"
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_tree
+msgid "Update description"
+msgstr "Actualizar descripción"
+
+#. module: helpdesk_tonigil
+#: model:res.groups,name:helpdesk_tonigil.res_groups_helpdesk_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: helpdesk_tonigil
+#: model:ir.model.fields,field_description:helpdesk_tonigil.field_helpdesk_ticket_action__ticket_id
+msgid "ticket"
+msgstr "ticket"
+
+#. module: helpdesk_tonigil
+#: model_terms:ir.ui.view,arch_db:helpdesk_tonigil.helpdesk_ticket_tree
+msgid "tickets"
+msgstr "tickets"

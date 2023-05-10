@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Aquí creamos la categoría -->
+    <record id="ir_module_category_helpdesk" model="ir.module.category">
+        <field name="name">Helpdesk</field>
+    </record>
+
+    <!-- Creamos el grupo para usuarios, que referencia a la categoría -->
+    <record id="res_groups_helpdesk_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="ir_module_category_helpdesk"/>
+    </record>
+
+    <!-- Creamos el grupo para administradores, que referencia a la misma categoría -->
+    <record id="res_groups_helpdesk_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="ir_module_category_helpdesk"/>
+        <!-- Hacemos que el administrador, herede los permisos del grupo de usuarios -->
+        <field name="implied_ids" eval="[(4, ref('res_groups_helpdesk_user'))]"/>
+        <!-- Hacemos que, el primer usuario que se crea, sea administrador -->
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+    <!-- Regla de registro para que el usuario sólo pueda ver los tickets que tiene asignados (o no están asignados) -->
+    <record id="helpdesk_ticket_personal_rule" model="ir.rule">
+        <field name="name">Personal Ticket</field>
+        <field ref="model_helpdesk_ticket" name="model_id"/>
+        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('res_groups_helpdesk_user'))]"/>
+    </record>
+    <record id="helpdesk_ticket_all_rule" model="ir.rule">
+        <field name="name">All Ticket</field>
+        <field ref="model_helpdesk_ticket" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('res_groups_helpdesk_manager'))]"/>
+    </record>
+</odoo>
