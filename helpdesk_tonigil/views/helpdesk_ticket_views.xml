@@ -211,7 +211,7 @@
 
     <!-- Creamos el menú -->
     <!-- Este aparece en el menú principal -->
-    <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
+    <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10" web_icon="helpdesk_tonigil,static/description/icon.png"/>
     <!-- Este aparece dentro del menú Helpdesk, por el parent enlazado y ejecuta la acción, por el action enlazado -->
     <menuitem id="helpdesk_ticket_open" name="Tickets" sequence="10" parent="helpdesk_menu" action="helpdesk_ticket_action"/>
 
