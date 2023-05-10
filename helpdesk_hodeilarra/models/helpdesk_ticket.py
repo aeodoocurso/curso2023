@@ -17,10 +17,12 @@ class Helpdesk(models.Model):
 
     @api.onchange('date')
     def _date_onchange(self):
-        if self.date:
-            self.date_limit = self.date + timedelta(days=1)
-        else:
-            self.date_limit = False
+        for record in self:
+    
+            if record.date:
+                record.date_limit = record.date + timedelta(days=1)
+            else:
+                record.date_limit = False
 
     
     #fecha y hora limite
