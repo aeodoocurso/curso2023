@@ -75,9 +75,7 @@
             
             <page string="Actions" name='actions'>
               <button string="Set all as done" name="set_all_actions_as_done" type="object" class="btn-primary"/>
-              <!--
               <button string="OpenRelated" name="%(helpdesk_javierparra.helpdesk_ticket_actions_related_action)d" type="action"/>
-              -->
               <button string="Open related Actions" name="get_related_actions" type="object"/>
               <field name="action_ids" context="{'default_state':'done','tree_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_tree_simple', 'form_view_ref':'helpdesk_javierparra.view_helpdesk_ticket_action_form_simple'}" />
             </page>

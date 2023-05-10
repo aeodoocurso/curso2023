@@ -19,10 +19,11 @@
     "data": [
         "security/helpdesk_security.xml",
         "security/ir.model.access.csv",
+
         "wizards/helpdesk_create_ticket_view.xml",
+        "views/helpdesk_ticket_action_views.xml",
         "views/helpdesk_ticket_views.xml",
         "views/helpdesk_ticket_tag_views.xml",
-        "views/helpdesk_ticket_action_views.xml",
         "data/helpdesk_cron.xml",
     ],
 }
