@@ -66,9 +66,11 @@ class HelpDeskTicket(models.Model):
     )
     
     tag_ids = fields.Many2many(
-        comodel_name = 'helpdesk.ticket.tag',
-        string = "Tag",
-        )
+        comodel_name='helpdesk.ticket.tag',
+        relation='helpdesk_ticket_tag_rel',
+        column1='ticket_id',
+        column2='tag_id',
+        string='Tags')
     
     action_ids = fields.One2many(
         comodel_name = 'helpdesk.ticket.action',
@@ -86,7 +88,7 @@ class HelpDeskTicket(models.Model):
     def _amount_time(self):
        for task in self:
            if task.amount_time < 0:
-               raise ValidationError(_("The amount of time can not be negative."))
+               raise UserError(_("The amount of time can't be negative."))
     
     user_name = fields.Char(
         string='User name',
@@ -110,11 +112,27 @@ class HelpDeskTicket(models.Model):
         for record in self:
             record.assigned = bool(record.user_id)
 
+    def _search_assigned(self, operator, value):
+        if operator not in ('=', '!=') or not isinstance(value, bool):
+            raise UserError(_("Operation not supported"))
+        if operator == '=' and value == True:
+            operator = '!='
+        else:
+            operator = '='
+        return [('user_id', operator, False)]
+    
+    def _inverse_assigned(self):
+        for record in self:
+            if not record.assigned:
+                record.user_id = False
+            else:
+                record.user_id = self.env.user
+    
     # hacer un campo calculado que indique, dentro de un ticket, la cantidad de tiquets asociados al mismo ususario.
     tickets_count = fields.Integer(
         compute='_compute_tickets_count',
         string='Tickets count',
-    )
+    )        
 
     @api.depends('user_id')
     def _compute_tickets_count(self):
@@ -132,7 +150,7 @@ class HelpDeskTicket(models.Model):
         self.ensure_one()
         # self.write({'tag_ids': [(0,0,{'name': self.tag_name})]})
         # self.write({'tag_ids': [Command.create({'name': self.tag_name})]})
-        self.tag_ids = [Command.create({'name': self.tag_name})]
+        # self.tag_ids = [Command.create({'name': self.tag_name})]
         # action = self.env["ir.actions.actions"]._for_xml_id("helpdesk_laurabonifacini.helpdesk_ticket_tag_action")
         
         action = {
@@ -146,7 +164,7 @@ class HelpDeskTicket(models.Model):
 
         }
         action['view_mode'] = 'form'
-        action['binding_view_types'] = 'form'
+        # action['binding_view_types'] = 'form'
         action['target'] = 'new'
         return action
 
@@ -156,6 +174,7 @@ class HelpDeskTicket(models.Model):
 
         # PUNTO DE DEBUG -------
         import pdb; pdb.set_trace()
+        a = 10/0
 
         tag_ids = self.env['helpdesk.ticket.tag'].search([('name', '=', 'otra')])
         # self.write({'tag_ids': [
@@ -163,7 +182,24 @@ class HelpDeskTicket(models.Model):
         #     (6,0,tag_ids.ids)]})
         self.tag_ids = [
             Command.clear(),
-            Command.set(tag_ids.ids)]        
+            Command.set(tag_ids.ids)] 
+
+
+    def get_related_actions(self):
+        self.ensure_one()
+        # action = self.env["ir.actions.actions"]._for_xml_id("helpdesk_angelmoya.helpdesk_ticket_action_related_action")
+        # return action
+        action = self.env["ir.actions.actions"]._for_xml_id("helpdesk_angelmoya.helpdesk_ticket_action_action")
+        # <field name="domain">[('ticket_id','=',active_id)]</field>
+        action['domain'] = [('ticket_id','=',self.id)]
+        # <field name="context">{'default_ticket_id': active_id}</field>
+        action['context'] = {'default_ticket_id': self.id}
+        return action
+    
+    def get_assigned(self):
+        self.ensure_one()
+        self.state = 'assigned'
+        self.user_id = self.env.user           
 
     def _search_assigned(self, operator, value):
         if operator not in ('=', '!=') or not isinstance(value, bool):
@@ -196,11 +232,6 @@ class HelpDeskTicket(models.Model):
     def set_actions_as_todo(self):
         self.ensure_one()
         self.action_ids.set_todo() 
-
-    def get_assigned(self):
-        self.ensure_one()
-        self.state = 'assigned'  
-        self.user_id = self.env.user 
 
         
 
