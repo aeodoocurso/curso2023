@@ -46,4 +46,6 @@
 
     <menuitem id="helpdesk_menu_config" name="Config" sequence="20" parent="helpdesk_menu" />
     <menuitem id="helpdesk_ticket_tag_open" name="Tags" parent='helpdesk_menu_config' sequence="40"  action="helpdesk_ticket_tag_action"/>
+    <menuitem id="helpdesk_ticket_action_menu" parent="helpdesk_menu" action="helpdesk_ticket_actions_action" sequence="10"/>
+
 </odoo>

@@ -103,6 +103,5 @@
         <field name="context">{'default_ticket_id':active_id}</field>
     </record>
 
-  <menuitem id="helpdesk_ticket_action_menu" parent="helpdesk_menu" action="helpdesk_ticket_actions_action" sequence="10"/>
 
 </odoo>
