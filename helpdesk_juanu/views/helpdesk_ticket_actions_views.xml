@@ -1,0 +1,47 @@
+<odoo>
+
+    <record id="view_helpdesk_ticket_action_tree" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.action.tree</field>
+        <field name="model">helpdesk.ticket.action</field>
+        <field name="arch" type="xml">
+            <tree string="Actions">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="ticket_id"/>
+                <field name="state"/>
+            </tree>
+      </field>
+    </record>
+
+    <record id="view_helpdesk_ticket_action_form" model="ir.ui.view">
+        <field name="name">view.helpdesk_ticket.action.form</field>
+        <field name="model">helpdesk.ticket.action</field>
+        <field name="arch" type="xml">
+          <form string="Action">
+              <header></header>
+              <sheet>
+                  <div class="oe_title">
+                      <h1><field name="name"/></h1>
+                  </div>
+                  <group>
+                      <group>
+                          <field name="description"/>
+                      </group>
+                      <group>
+                          <field name="state"/>
+                      </group>
+                  </group>
+              </sheet>
+          </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="helpdesk_ticket_action">
+      <field name="name">Helpdesk ticket action</field>
+      <field name="res_model">helpdesk.ticket.action</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="actions" name="Actions" parent="helpdesk_juanu.helpdesk_root" action="helpdesk_juanu.helpdesk_ticket_action"/>
+
+</odoo>
