@@ -5,15 +5,19 @@
             <field name="model">helpdesk.create.ticket</field>
             <field name="arch" type="xml">
                 <form string="Create Ticket">
-                        <group name="main">
+                        <field name="state" invisible="1"/>
+                        <group name="step_1" states="step_1">
                             <field name="tag_id" invisible="1"/>
                             <field name="name"/>
                             <field name="description"/>
+                            <button name="create_ticket" string="Siguiente" type="object" class="oe_highlight"/>
+                        </group>
+                        <group name="step_2" states="step_2">
+                            <field name="ticket_id"/>
+                            <button name="view_ticket" string="Ver ticket creado" type="object" class="oe_highlight"/>
                         </group>
                         <footer>
-                            <button name="create_ticket" string="Accept" type="object" class="oe_highlight"/>
-                            or
-                            <button string="Cancel" class="oe_link" special="cancel" />
+                            <button string="Cancelar" class="oe_link" special="cancel" />
                         </footer>
                 </form>
             </field>
