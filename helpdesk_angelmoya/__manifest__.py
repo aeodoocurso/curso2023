@@ -10,11 +10,12 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": [
-        "base"
+        "mail"
     ],
     "data": [
         "security/helpdesk_security.xml",
         "security/ir.model.access.csv",
+        "views/helpdesk_menu_views.xml",
         "wizards/helpdesk_create_ticket_views.xml",
         "views/helpdesk_ticket_action_views.xml",
         "views/helpdesk_ticket_views.xml",

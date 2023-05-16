@@ -24,7 +24,9 @@
                         <group>
                             <field name="date"/>
                             <field name="date_limit"/>
-                            <field name="amount_time" widget="float_time"/>                            
+                            <field name="amount_time" widget="float_time"/>     
+                            <field name="partner_id" context="{'default_company_type':'person', 'default_user_id': user_id, 'default_search_user_id': user_id}"/>
+                                                   
                         </group>
                         <group>
                             <field name="assigned"/>
@@ -80,6 +82,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
@@ -236,7 +243,6 @@
         </field>
     </record>
     
-    <menuitem id="helpdesk_menu" name="Helpdesk" sequence="10"/>
-    <menuitem id="helpdesk_ticket_open" name="Tickets" sequence="10" parent="helpdesk_menu" action="helpdesk_ticket_action"/>
+    <menuitem id="helpdesk_ticket_open" name="Tickets" sequence="10" parent="helpdesk_angelmoya.helpdesk_menu" action="helpdesk_ticket_action"/>
 
 </odoo>

@@ -12,8 +12,14 @@ class SaleOrder(models.Model):
         self.ensure_one()
         self.env['helpdesk.ticket'].create({
             'name': self.name,
-            'partner_id': self.partner_id.id,
+            'person_id': self.partner_id.id,
             'tag_ids': [(6, 0, self.order_line.mapped('product_id.helpdesk_tag_id').ids)],
             'sale_order_id': self.id,
         })
     # hacer que al cancelar un pedido se cancelen todos los tickets asociados. (Volver a poner el campo state como un selection)
+
+    def _action_cancel(self):
+        self.ticket_ids.write({
+            'state': 'canceled',
+        })
+        return super()._action_cancel()

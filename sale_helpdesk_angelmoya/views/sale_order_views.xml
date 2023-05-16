@@ -7,6 +7,9 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Tickets" name="name">
+                    <button string="Create Ticket"
+                        name="create_ticket_from_sale_order"
+                        type="object"/>
                     <field name="ticket_ids"/>
                 </page>
             </xpath> 

@@ -4,6 +4,7 @@ from datetime import timedelta
 
 class HelpdeskTicket(models.Model):
     _name = 'helpdesk.ticket'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Helpdesk Ticket'
     
 
@@ -142,10 +143,11 @@ class HelpdeskTicket(models.Model):
     def _search_assigned(self, operator, value):
         if operator not in ('=', '!=') or not isinstance(value, bool):
             raise UserError(_("Operation not supported"))
-        if operator == '=' and value == True:
-            operator = '!='
-        else:
-            operator = '='
+        if value == True:
+            if operator == '=' :
+                operator = '!='
+            else:
+                operator = '='
         return [('user_id', operator, False)]
     
     def _inverse_assigned(self):
@@ -228,3 +230,14 @@ class HelpdeskTicket(models.Model):
         self.ensure_one()
         self.state = 'assigned'
         self.user_id = self.env.user
+
+
+    # 34 Uso de context
+
+    # Añadir un campo contacto en el ticket, hacer que si creo un contacto desde el ticket se 
+    # cree como tipo individual y el comercial sea el usuario asignado al ticket.
+
+    partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Partner')
+    
