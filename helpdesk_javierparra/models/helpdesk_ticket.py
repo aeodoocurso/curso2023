@@ -80,7 +80,8 @@ class HelpdeskTicket(models.Model):
 
     person_id = fields.Many2one(
         comodel_name='res.partner',
-        domain=[('is_company', '=', False)],)
+        domain=[('is_company', '=', False)],
+        )
 
     amount_time = fields.Float(string='Amount of time')
 
