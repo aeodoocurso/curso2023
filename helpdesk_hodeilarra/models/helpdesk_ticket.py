@@ -5,7 +5,7 @@ from datetime import timedelta
 class Helpdesk(models.Model):
     _name = 'helpdesk.ticket'
     _description = 'Helpdesk Ticket'
-
+    _inherit = ['mail.thread']
     #nombre
     nombre = fields.Char(required=True)
 
@@ -154,3 +154,5 @@ class Helpdesk(models.Model):
         ]
         })
 
+
+    partner_id = fields.Many2one(comodel_name="res.users", string="Assigned to")
